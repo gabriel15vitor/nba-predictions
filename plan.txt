@@ -1,0 +1,21 @@
+Week 1 — Project skeleton + database connection
+
+Spring Initializr with: Spring Web, Spring Data JPA, PostgreSQL Driver
+Connect to a local PostgreSQL database with application.properties
+Create a Team entity and TeamRepository, verify data saves and loads
+
+Week 2 — NBA API integration
+
+Fetch team stats from balldontlie API using RestTemplate or WebClient
+Store the results in PostgreSQL via the Repository
+
+Week 3 — The algorithm
+
+Implement win probability logic in the Service layer
+Expose it via a Controller endpoint
+
+Week 4 — Polish for the portfolio
+
+Add Swagger UI (auto-generates API docs — very impressive to employers)
+Write a docker-compose.yml so anyone can run the project with one command
+Write a solid README

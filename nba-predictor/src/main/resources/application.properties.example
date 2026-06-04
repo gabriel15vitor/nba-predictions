@@ -1,0 +1,10 @@
+spring.application.name=nba-predictor
+# DataSource Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/nba_predictor
+spring.datasource.username=postgres
+spring.datasource.password=1506
+# JPA/Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+# Balldontlie API
+balldontlie.api.key=your key
