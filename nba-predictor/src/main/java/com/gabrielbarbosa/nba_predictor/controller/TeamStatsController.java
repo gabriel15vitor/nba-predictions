@@ -16,7 +16,8 @@ public class TeamStatsController {
     private TeamStatsService teamStatsService;
 
     @PostMapping("/batch")
-    public void saveTeamStats(@RequestBody TeamStatsBatchRequest request) {
+    public String saveTeamStats(@RequestBody TeamStatsBatchRequest request) {
         teamStatsService.saveTeamStats(request);
+        return "Stats saved successfully";
     }
 }
