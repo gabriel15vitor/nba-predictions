@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Win Probability Predictor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>NBA win probability predictor</h1>
+        <p class="subtitle">Select two teams to calculate the win probability based on 2024-25 season stats</p>
+
+        <div class="matchup">
+            <div class="team-select">
+                <label for="home-team">Home team</label>
+                <select id="home-team">
+                    <option value="">Loading teams...</option>
+                </select>
+            </div>
+
+            <span class="vs">vs</span>
+
+            <div class="team-select">
+                <label for="away-team">Away team</label>
+                <select id="away-team">
+                    <option value="">Loading teams...</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="predict-btn">Predict</button>
+
+        <div id="error-message" class="error hidden"></div>
+
+        <div id="result" class="result hidden">
+            <div class="result-team">
+                <span class="result-name" id="home-name"></span>
+                <span class="result-percent" id="home-percent"></span>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" id="home-bar"></div>
+            </div>
+            <div class="result-team">
+                <span class="result-name" id="away-name"></span>
+                <span class="result-percent" id="away-percent"></span>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
