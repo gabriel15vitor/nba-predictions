@@ -15,6 +15,7 @@ It was built as a portfolio project to demonstrate backend development skills: R
 - **Spring Data JPA** — database access
 - **Lombok** — reduces boilerplate
 - **Python** (`nba_api`) — official NBA stats ingestion script
+- **Docker / Docker Compose** — containerized runtime for the API and database
 - **HTML / CSS / JavaScript** — frontend (no frameworks)
 
 ## Architecture
@@ -94,7 +95,7 @@ cp src/main/resources/application.properties.example src/main/resources/applicat
 
 Edit `application.properties` with your PostgreSQL credentials.
 
-### 4. Run the application
+### 4. Run the application locally
 
 ```bash
 ./mvnw spring-boot:run
@@ -102,7 +103,17 @@ Edit `application.properties` with your PostgreSQL credentials.
 
 The API will be available at `http://localhost:8080` and the web interface at `http://localhost:8080/`.
 
-### 5. Populate the database
+### 5. Run with Docker Compose
+
+If you want one-command startup for the API plus PostgreSQL, use Docker Compose instead:
+
+```bash
+docker compose up --build
+```
+
+The API will be available at `http://localhost:8080` and the database is exposed on `localhost:5432`.
+
+### 6. Populate the database
 
 Install the Python dependencies:
 
@@ -129,7 +140,11 @@ nba-predictor/
 │   └── model/          JPA entities and DTOs
 ├── src/main/resources/
 │   ├── application.properties.example
+│   ├── application.properties
 │   └── static/         frontend (HTML/CSS/JS)
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 └── data-scripts/
     └── fetch_team_stats.py
 ```
@@ -142,7 +157,6 @@ nba-predictor/
 - [ ] Dynamic season selection (currently hardcoded to 2024-25)
 - [ ] Historical prediction accuracy tracking
 - [ ] Swagger / OpenAPI documentation
-- [ ] Docker Compose setup for one-command startup
 
 ## Author
 
