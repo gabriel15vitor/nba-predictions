@@ -18,8 +18,8 @@ public class TeamStatsData {
     private int l;
     @JsonProperty("W_PCT")
     private double wPct;
-    @JsonProperty("PTS")
-    private double pts;
-    @JsonProperty("PLUS_MINUS")
-    private double plusMinus;
+    @JsonProperty("NET_RATING")
+    private double netRating;
+    @JsonProperty("EFG_PCT")
+    private double efgPct;
 }

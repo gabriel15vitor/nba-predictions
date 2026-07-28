@@ -5,7 +5,8 @@ def fetch_and_send(season: str):
     stats = leaguedashteamstats.LeagueDashTeamStats(
         season=season,
         season_type_all_star='Regular Season',
-        per_mode_detailed='PerGame'
+        per_mode_detailed='PerGame',
+        measure_type_detailed_defense='Advanced'
     )
     df = stats.get_data_frames()[0]
     records = df.to_dict(orient='records')

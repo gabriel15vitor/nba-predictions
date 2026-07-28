@@ -32,12 +32,12 @@ public class TeamStats {
     @Column(name = "losses")
     private int losses;
 
-    @Column(name = "win_percentage")
+    @Column(name = "win_pct")
     private double winPct;
 
-    @Column(name = "points_per_game")
-    private double pts;
+    @Column(name = "net_rating")
+    private double netRating;
 
-    @Column(name = "plus_minus")
-    private double plusMinus;
+    @Column(name = "efg_pct")
+    private double efgPct;
 }

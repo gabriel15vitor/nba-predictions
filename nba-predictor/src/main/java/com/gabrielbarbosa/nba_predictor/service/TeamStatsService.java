@@ -15,8 +15,7 @@ public class TeamStatsService {
 
     public void saveTeamStats(TeamStatsBatchRequest request){
         for (TeamStatsData statsData : request.getStats()) {
-            if (!teamStatsRepository.existsByTeamIdAndSeason(statsData.getTeamId(), request.getSeason())) { //Verifica se o dado já existe no DB
-                // create TeamStats entity and map fields
+            if (!teamStatsRepository.existsByTeamIdAndSeason(statsData.getTeamId(), request.getSeason())) {
                 TeamStats teamStats = new TeamStats();
                 teamStats.setTeamId(statsData.getTeamId());
                 teamStats.setSeason(request.getSeason());
@@ -24,8 +23,8 @@ public class TeamStatsService {
                 teamStats.setWins(statsData.getW());
                 teamStats.setLosses(statsData.getL());
                 teamStats.setWinPct(statsData.getWPct());
-                teamStats.setPts(statsData.getPts());
-                teamStats.setPlusMinus(statsData.getPlusMinus());
+                teamStats.setNetRating(statsData.getNetRating());
+                teamStats.setEfgPct(statsData.getEfgPct());
 
                 teamStatsRepository.save(teamStats);
             }

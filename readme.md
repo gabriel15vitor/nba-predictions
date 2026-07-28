@@ -15,6 +15,7 @@ It was built as a portfolio project to demonstrate backend development skills: R
 - **Spring Data JPA** — database access
 - **Lombok** — reduces boilerplate
 - **Python** (`nba_api`) — official NBA stats ingestion script
+- **Docker / Docker Compose** — containerized runtime for the API and database
 - **HTML / CSS / JavaScript** — frontend (no frameworks)
 
 ## Architecture
@@ -42,6 +43,7 @@ Two independent data sources feed the database:
   - Points per game: 20%
 - REST endpoints returning structured JSON
 - Simple web UI to select two teams and visualize the predicted win probability
+- Fully containerized with Docker Compose — one command to run the API and database together
 
 ## API endpoints
 
@@ -64,27 +66,44 @@ Two independent data sources feed the database:
 
 ## Getting started
 
-### Prerequisites
+### Option A — Docker (recommended)
 
+The fastest way to run the whole project — API and database — with one command.
+
+**Prerequisites:** Docker Desktop
+
+```bash
+git clone https://github.com/gabriel15vitor/nba-predictor.git
+cd nba-predictor
+docker compose up --build
+```
+
+The API will be available at `http://localhost:8080` and the web interface at `http://localhost:8080/`. PostgreSQL is exposed on `localhost:5432`.
+
+Then populate the database (see [Populate the database](#populate-the-database) below).
+
+### Option B — Run locally
+
+**Prerequisites:**
 - Java 21
 - Maven
 - PostgreSQL
 - Python 3.10+ (for the data ingestion script)
 
-### 1. Clone the repository
+#### 1. Clone the repository
 
 ```bash
 git clone https://github.com/gabriel15vitor/nba-predictor.git
 cd nba-predictor
 ```
 
-### 2. Set up the database
+#### 2. Set up the database
 
 ```sql
 CREATE DATABASE nba_predictor;
 ```
 
-### 3. Configure application properties
+#### 3. Configure application properties
 
 Copy the example file and fill in your own credentials:
 
@@ -94,7 +113,7 @@ cp src/main/resources/application.properties.example src/main/resources/applicat
 
 Edit `application.properties` with your PostgreSQL credentials.
 
-### 4. Run the application
+#### 4. Run the application
 
 ```bash
 ./mvnw spring-boot:run
@@ -102,7 +121,7 @@ Edit `application.properties` with your PostgreSQL credentials.
 
 The API will be available at `http://localhost:8080` and the web interface at `http://localhost:8080/`.
 
-### 5. Populate the database
+### Populate the database
 
 Install the Python dependencies:
 
@@ -110,7 +129,7 @@ Install the Python dependencies:
 pip install nba_api requests
 ```
 
-Run the ingestion script (make sure the Java app is running first):
+Run the ingestion script (make sure the Java app is running first, whether via Docker or locally):
 
 ```bash
 python data-scripts/fetch_team_stats.py
@@ -128,8 +147,11 @@ nba-predictor/
 │   ├── repository/     Spring Data JPA interfaces
 │   └── model/          JPA entities and DTOs
 ├── src/main/resources/
-│   ├── application.properties.example
+│   ├── application.properties
 │   └── static/         frontend (HTML/CSS/JS)
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
 └── data-scripts/
     └── fetch_team_stats.py
 ```
@@ -142,7 +164,7 @@ nba-predictor/
 - [ ] Dynamic season selection (currently hardcoded to 2024-25)
 - [ ] Historical prediction accuracy tracking
 - [ ] Swagger / OpenAPI documentation
-- [ ] Docker Compose setup for one-command startup
+- [x] Containerize with Docker Compose
 
 ## Author
 
