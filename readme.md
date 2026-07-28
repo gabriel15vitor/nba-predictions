@@ -113,7 +113,7 @@ cp src/main/resources/application.properties.example src/main/resources/applicat
 
 Edit `application.properties` with your PostgreSQL credentials.
 
-### 4. Run the application
+#### 4. Run the application
 
 ```bash
 ./mvnw spring-boot:run
@@ -121,7 +121,7 @@ Edit `application.properties` with your PostgreSQL credentials.
 
 The API will be available at `http://localhost:8080` and the web interface at `http://localhost:8080/`.
 
-### 5. Populate the database
+### Populate the database
 
 Install the Python dependencies:
 
@@ -147,7 +147,7 @@ nba-predictor/
 │   ├── repository/     Spring Data JPA interfaces
 │   └── model/          JPA entities and DTOs
 ├── src/main/resources/
-│   ├── application.properties.example
+│   ├── application.properties
 │   └── static/         frontend (HTML/CSS/JS)
 ├── Dockerfile
 ├── docker-compose.yml
@@ -164,7 +164,7 @@ nba-predictor/
 - [ ] Dynamic season selection (currently hardcoded to 2024-25)
 - [ ] Historical prediction accuracy tracking
 - [ ] Swagger / OpenAPI documentation
-- [ ] Docker Compose setup for one-command startup
+- [x] Containerize with Docker Compose
 
 ## Author
 
