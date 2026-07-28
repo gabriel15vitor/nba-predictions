@@ -69,6 +69,7 @@ function showResult(data) {
     document.getElementById('home-percent').textContent = data.homeProbability.toFixed(1) + '%';
     document.getElementById('away-percent').textContent = data.awayProbability.toFixed(1) + '%';
     document.getElementById('home-bar').style.width = data.homeProbability + '%';
+    document.getElementById('away-bar').style.width = data.awayProbability + '%';
 
     resultBox.classList.remove('hidden');
 }
