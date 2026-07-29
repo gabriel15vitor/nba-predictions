@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gabrielbarbosa.nba_predictor.model.ChampionScore;
 import com.gabrielbarbosa.nba_predictor.model.PredictionResponse;
 import com.gabrielbarbosa.nba_predictor.service.PredictionService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/predict")
@@ -19,5 +21,10 @@ public class PredictionController {
     @GetMapping
     public PredictionResponse predict(@RequestParam Long home, @RequestParam Long away) {
         return predictionService.predictWinProbability(home, away);
+    }
+
+    @GetMapping("/champion")
+    public List<ChampionScore> predictChampion() {
+        return predictionService.predictChampionRanking();
     }
 }

@@ -1,5 +1,6 @@
 package com.gabrielbarbosa.nba_predictor.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gabrielbarbosa.nba_predictor.model.Team;
+import com.gabrielbarbosa.nba_predictor.model.TeamOption;
 import com.gabrielbarbosa.nba_predictor.repository.TeamRepository;
 
 @RestController

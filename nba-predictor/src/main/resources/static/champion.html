@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Champion Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="champion.css">
+</head>
+<body>
+    <main class="container">
+        <nav class="page-nav">
+            <a href="index.html">Matchup predictor</a>
+            <a href="champion.html" class="active">Champion predictor</a>
+        </nav>
+
+        <h1>NBA champion predictor - based on the latest regular season</h1>
+        <p class="subtitle">Teams ranked by predicted championship strength, based on the current season</p>
+
+        <div id="loading" class="loading">Loading rankings...</div>
+        <div id="error-message" class="error hidden"></div>
+
+        <ol id="ranking-list" class="ranking-list hidden"></ol>
+    </main>
+
+    <script src="champion.js"></script>
+</body>
+</html>

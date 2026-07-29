@@ -33,7 +33,8 @@ public class TeamStatsController {
 
     @GetMapping("/teams")
     public List<TeamOption> getTeamOptions() {
-        List<Object[]> results = teamStatsRepository.findDistinctTeams("2024-25");
+        String currentSeason = teamStatsRepository.findLatestSeason();
+        List<Object[]> results = teamStatsRepository.findDistinctTeams(currentSeason);
         List<TeamOption> teams = new ArrayList<>();
         for (Object[] row : results) {
             teams.add(new TeamOption((Long) row[0], (String) row[1]));

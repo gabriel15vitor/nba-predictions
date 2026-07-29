@@ -1,5 +1,22 @@
 import requests
+from datetime import datetime
 from nba_api.stats.endpoints import leaguedashteamstats
+
+def get_current_season_start_year():
+    today = datetime.now()
+    if today.month >= 10:
+        return today.year
+    else:
+        return today.year - 1
+
+def get_last_n_seasons(n):
+    start_year = get_current_season_start_year()
+    seasons = []
+    for i in range(n):
+        year = start_year - i
+        season_str = f"{year}-{str(year + 1)[-2:]}"
+        seasons.append(season_str)
+    return seasons
 
 def fetch_and_send(season: str):
     stats = leaguedashteamstats.LeagueDashTeamStats(
@@ -17,7 +34,8 @@ def fetch_and_send(season: str):
     )
     print(response.status_code, response.text)
 
-seasons = ['2024-25', '2023-24', '2022-23', '2021-22', '2020-21']
+seasons = get_last_n_seasons(3)
+print(f"Fetching seasons: {seasons}")
 
 for season in seasons:
     fetch_and_send(season)
