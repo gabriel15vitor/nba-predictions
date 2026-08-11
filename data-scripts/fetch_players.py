@@ -8,7 +8,7 @@ from nba_api.stats.endpoints import (
 
 # ---- CONFIG ----
 JAVA_API_URL = "http://localhost:8080/api/players/batch"
-REQUEST_DELAY = 0.6  # seconds between NBA API calls, to avoid rate limiting
+REQUEST_DELAY = 0.4  # seconds between NBA API calls, to avoid rate limiting
 
 # Team IDs -> Team Names (official NBA team ids, all 30 teams)
 TEAMS = {
