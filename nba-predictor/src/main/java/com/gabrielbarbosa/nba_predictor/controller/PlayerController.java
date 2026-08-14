@@ -43,4 +43,10 @@ public class PlayerController {
         playerService.toggleInjury(playerId, isInjured);
         return "Injury status updated";
     }
+
+    @PostMapping("/prune")
+        public String pruneInactivePlayers(@RequestBody List<Long> currentApiPlayerIds) {
+        int removed = playerService.pruneInactivePlayers(currentApiPlayerIds);
+        return removed + " inactive players removed";
+    }
 }

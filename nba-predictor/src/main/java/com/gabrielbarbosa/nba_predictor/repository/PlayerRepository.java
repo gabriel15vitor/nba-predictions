@@ -11,4 +11,5 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     Player findByApiPlayerId(Long apiPlayerId);
     java.util.List<Player> findByTeamId(Long teamId);
     java.util.List<Player> findByTeamIdAndIsInjuredFalse(Long teamId);
+    void deleteByApiPlayerIdNotIn(java.util.List<Long> apiPlayerIds);
 }

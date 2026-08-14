@@ -29,8 +29,8 @@ public class Player {
     @Column(name = "team_name")
     private String teamName;
 
-    @Column(name = "mvp_shares")
-    private double mvpShares;
+    @Column(name = "all_nba_count")
+    private int allNbaCount;
 
     @Column(name = "playoff_games")
     private int playoffGames;

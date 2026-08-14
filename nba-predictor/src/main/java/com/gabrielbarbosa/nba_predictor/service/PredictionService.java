@@ -48,8 +48,31 @@ public class PredictionService {
         return new PredictionResponse(home.getTeamName(), away.getTeamName(), homeProbability, awayProbability);
     }
 
+    /**
+     * Blends team-level advanced stats with active-roster strength (average
+     * All-NBA selections and playoff games across non-injured players).
+     * Injured players are excluded entirely, so a flagged star lowers their
+     * team's score here just like in the champion ranking.
+     */
     private double calculateMatchupScore(TeamStats stats) {
-        return (stats.getNetRating() * 0.4) + (stats.getWinPct() * 0.3) + (stats.getEfgPct() * 0.3);
+        double teamScore = (stats.getNetRating() * 0.4) + (stats.getWinPct() * 0.3) + (stats.getEfgPct() * 0.3);
+
+        List<Player> activeRoster = playerRepository.findByTeamIdAndIsInjuredFalse(stats.getTeamId());
+
+        double avgAllNba = 0;
+        double avgPlayoffGames = 0;
+
+        if (!activeRoster.isEmpty()) {
+            avgAllNba = activeRoster.stream().mapToInt(Player::getAllNbaCount).average().orElse(0);
+            avgPlayoffGames = activeRoster.stream().mapToInt(Player::getPlayoffGames).average().orElse(0);
+        }
+
+        double rosterScore = (avgAllNba * 0.6) + ((avgPlayoffGames / 50) * 0.4);
+
+        // Team performance stats remain the dominant signal (80%); roster
+        // strength is a smaller adjustment (20%) on top, mainly meant to
+        // reflect the impact of injuries rather than override season form.
+        return (teamScore * 0.8) + (rosterScore * 0.2);
     }
 
     public List<ChampionScore> predictChampionRanking() {
@@ -69,12 +92,10 @@ public class PredictionService {
             double avgPlayoffGames = 0;
 
             if (!activeRoster.isEmpty()) {
-                avgAllNba = activeRoster.stream().mapToDouble(Player::getMvpShares).average().orElse(0);
+                avgAllNba = activeRoster.stream().mapToInt(Player::getAllNbaCount).average().orElse(0);
                 avgPlayoffGames = activeRoster.stream().mapToInt(Player::getPlayoffGames).average().orElse(0);
             }
 
-            // avgPlayoffGames is scaled down (÷50) to bring it into a comparable range
-            // to the other factors, which are all roughly in the -10 to 1 range.
             double score = (team.getNetRating() * 0.35)
                     + (team.getWinPct() * 0.2)
                     + (team.getEfgPct() * 0.15)

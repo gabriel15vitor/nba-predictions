@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Roster & Injury Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="champion.css">
+    <link rel="stylesheet" href="roster.css">
+</head>
+<body>
+    <main class="container">
+        <nav class="page-nav">
+            <a href="index.html">Matchup predictor</a>
+            <a href="champion.html">Champion predictor</a>
+            <a href="roster.html" class="active">Rosters</a>
+        </nav>
+
+        <h1>Team rosters</h1>
+        <p class="subtitle">Flag players as injured to see the effect on predictions</p>
+
+        <div class="team-select">
+            <label for="team-picker">Team</label>
+            <select id="team-picker">
+                <option value="">Loading teams...</option>
+            </select>
+        </div>
+
+        <div id="loading" class="loading hidden">Loading roster...</div>
+        <div id="error-message" class="error hidden"></div>
+
+        <ul id="roster-list" class="roster-list hidden"></ul>
+    </main>
+
+    <script src="roster.js"></script>
+</body>
+</html>

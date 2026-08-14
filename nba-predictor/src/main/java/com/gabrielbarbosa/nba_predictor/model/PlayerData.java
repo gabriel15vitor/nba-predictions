@@ -16,8 +16,8 @@ public class PlayerData {
     private Long teamId;
     @JsonProperty("TEAM_NAME")
     private String teamName;
-    @JsonProperty("MVP_SHARES")
-    private double mvpShares;
+    @JsonProperty("ALL_NBA_COUNT")
+    private int allNbaCount;
     @JsonProperty("PLAYOFF_GAMES")
     private int playoffGames;
 }

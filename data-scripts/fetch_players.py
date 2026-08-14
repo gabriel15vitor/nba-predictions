@@ -1,5 +1,6 @@
 import time
 import requests
+from datetime import datetime
 from nba_api.stats.endpoints import (
     commonteamroster,
     playerawards,
@@ -8,7 +9,22 @@ from nba_api.stats.endpoints import (
 
 # ---- CONFIG ----
 JAVA_API_URL = "http://localhost:8080/api/players/batch"
-REQUEST_DELAY = 0.4  # seconds between NBA API calls, to avoid rate limiting
+REQUEST_DELAY = 0.6  # seconds between NBA API calls, to avoid rate limiting
+RECENT_SEASONS_WINDOW = 2  # only count All-NBA selections from the last N seasons
+
+
+def get_current_season_start_year():
+    today = datetime.now()
+    return today.year if today.month >= 10 else today.year - 1
+
+
+def get_recent_seasons(n):
+    """Same season-string logic used in fetch_team_stats.py, kept in sync."""
+    start_year = get_current_season_start_year()
+    return [f"{start_year - i}-{str(start_year - i + 1)[-2:]}" for i in range(n)]
+
+
+RECENT_SEASONS = get_recent_seasons(RECENT_SEASONS_WINDOW)
 
 # Team IDs -> Team Names (official NBA team ids, all 30 teams)
 TEAMS = {
@@ -39,16 +55,26 @@ def get_current_roster(team_id):
 
 
 def get_all_nba_count(player_id):
-    """Counts how many times a player has been selected to an All-NBA team."""
+    """Counts All-NBA selections limited to the last RECENT_SEASONS_WINDOW seasons.
+
+    This intentionally excludes career-long totals — an aging star with many
+    past selections but no recent ones shouldn't inflate a rebuilding team's
+    predicted strength. Confirmed via manual inspection that PlayerAwards
+    includes a SEASON column formatted like "2024-25", matching the format
+    used everywhere else in this project.
+    """
     awards = playerawards.PlayerAwards(player_id=player_id)
     df = awards.get_data_frames()[0]
     time.sleep(REQUEST_DELAY)
 
-    if "DESCRIPTION" not in df.columns:
+    if "DESCRIPTION" not in df.columns or "SEASON" not in df.columns:
         print(f"  [!] Unexpected awards format for player {player_id}, columns: {list(df.columns)}")
         return 0
 
-    return int(df["DESCRIPTION"].astype(str).str.contains("All-NBA", case=False, na=False).sum())
+    is_all_nba = df["DESCRIPTION"].astype(str).str.contains("All-NBA", case=False, na=False)
+    is_recent = df["SEASON"].astype(str).isin(RECENT_SEASONS)
+
+    return int((is_all_nba & is_recent).sum())
 
 
 def get_playoff_games(player_id):
@@ -76,9 +102,10 @@ def get_playoff_games(player_id):
 def sanity_check(sample_player_id, sample_player_name):
     """Runs one full fetch for a single known player before committing to the full run."""
     print(f"--- Sanity check: {sample_player_name} ({sample_player_id}) ---")
+    print(f"Counting All-NBA selections only for: {RECENT_SEASONS}")
     all_nba = get_all_nba_count(sample_player_id)
     playoff_games = get_playoff_games(sample_player_id)
-    print(f"All-NBA selections: {all_nba}")
+    print(f"Recent All-NBA selections ({RECENT_SEASONS_WINDOW} seasons): {all_nba}")
     print(f"Career playoff games: {playoff_games}")
     print("--- If these numbers look wrong, stop and check the raw dataframe columns before continuing ---\n")
 
@@ -104,7 +131,7 @@ def fetch_all_players():
                     "PLAYER_NAME": player_name,
                     "TEAM_ID": team_id,
                     "TEAM_NAME": team_name,
-                    "MVP_SHARES": all_nba_count,  # reused field name: All-NBA selection count
+                    "ALL_NBA_COUNT": all_nba_count,
                     "PLAYOFF_GAMES": playoff_games,
                 })
                 print(f"  {player_name}: All-NBA={all_nba_count}, PlayoffGames={playoff_games}")
@@ -117,6 +144,17 @@ def fetch_all_players():
 
 def send_batch(players):
     response = requests.post(JAVA_API_URL, json={"players": players})
+    print(response.status_code, response.text)
+
+
+def prune_inactive_players(players):
+    """Removes players from the DB who no longer appear in any current roster
+    (retired, released, left the league). Only call this after a FULL fetch
+    across all 30 teams — a partial player list would wrongly delete active
+    players who just weren't included in this run.
+    """
+    current_ids = [p["PLAYER_ID"] for p in players]
+    response = requests.post(f"{JAVA_API_URL.rsplit('/', 1)[0]}/prune", json=current_ids)
     print(response.status_code, response.text)
 
 
@@ -135,3 +173,6 @@ if __name__ == "__main__":
 
     print(f"\nFetched {len(players)} players. Sending to Java API...")
     send_batch(players)
+
+    print("\nPruning players no longer on any roster...")
+    prune_inactive_players(players)
