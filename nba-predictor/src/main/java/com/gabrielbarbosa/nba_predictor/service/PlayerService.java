@@ -32,6 +32,8 @@ public class PlayerService {
             player.setTeamName(playerData.getTeamName());
             player.setAllNbaCount(playerData.getAllNbaCount());
             player.setPlayoffGames(playerData.getPlayoffGames());
+            player.setPie(playerData.getPie());
+            player.setNetRating(playerData.getNetRating());
 
             playerRepository.save(player);
         }

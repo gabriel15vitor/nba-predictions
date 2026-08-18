@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict 3WgLvRNYG9a0J2vbX2DCeWDAcqeZ9r23Albieda6YmecdgPKGvz7ufMLVCGnq7e
+\restrict AX7Z3JKEId5awPJdlMMt2b2iiO5Lwt09Vjw2OR8Y86XDwgO2dVlSK12c9WfAi3w
 
 -- Dumped from database version 16.14
 -- Dumped by pg_dump version 16.14
@@ -34,7 +34,10 @@ CREATE TABLE public.player (
     name character varying(255),
     playoff_games integer,
     team_id bigint,
-    team_name character varying(255)
+    team_name character varying(255),
+    all_nba_count integer,
+    player_net_rating double precision,
+    pie double precision
 );
 
 
@@ -63,537 +66,537 @@ ALTER TABLE public.team_stats OWNER TO postgres;
 -- Data for Name: player; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.player (id, api_player_id, is_injured, mvp_shares, name, playoff_games, team_id, team_name) FROM stdin;
-1	1642933	f	0	Keshon Gilbert	0	1610612737	Atlanta Hawks
-2	1642484	f	0	RayJ Dennis	0	1610612737	Atlanta Hawks
-3	1630228	f	0	Jonathan Kuminga	40	1610612737	Atlanta Hawks
-4	1630552	f	1	Jalen Johnson	14	1610612737	Atlanta Hawks
-5	1630811	f	0	Keaton Wallace	3	1610612737	Atlanta Hawks
-6	203468	f	0	CJ McCollum	73	1610612737	Atlanta Hawks
-7	1629216	f	0	Gabe Vincent	60	1610612737	Atlanta Hawks
-8	1630700	f	0	Dyson Daniels	9	1610612737	Atlanta Hawks
-9	1629638	f	0	Nickeil Alexander-Walker	43	1610612737	Atlanta Hawks
-10	1627741	f	0	Buddy Hield	18	1610612737	Atlanta Hawks
-11	1642258	f	0	Zaccharie Risacher	3	1610612737	Atlanta Hawks
-12	1631132	f	0	Christian Koloko	0	1610612737	Atlanta Hawks
-13	1628396	f	0	Tony Bradley	24	1610612737	Atlanta Hawks
-14	1642854	f	0	Asa Newell	2	1610612737	Atlanta Hawks
-15	1630168	f	0	Onyeka Okongwu	35	1610612737	Atlanta Hawks
-16	1631243	f	0	Mouhamed Gueye	6	1610612737	Atlanta Hawks
-17	1630557	f	0	Corey Kispert	5	1610612737	Atlanta Hawks
-18	1629111	f	0	Jock Landale	8	1610612737	Atlanta Hawks
-19	1628369	f	5	Jayson Tatum	127	1610612738	Boston Celtics
-20	202696	f	0	Nikola Vučević	22	1610612738	Boston Celtics
-21	1627759	f	2	Jaylen Brown	142	1610612738	Boston Celtics
-22	1642910	f	0	John Tonje	0	1610612738	Boston Celtics
-23	1628401	f	0	Derrick White	90	1610612738	Boston Celtics
-24	1630202	f	0	Payton Pritchard	76	1610612738	Boston Celtics
-25	1631199	f	0	Ron Harper Jr.	6	1610612738	Boston Celtics
-26	1641775	f	0	Jordan Walsh	15	1610612738	Boston Celtics
-27	1642864	f	0	Hugo González	4	1610612738	Boston Celtics
-28	1630573	f	0	Sam Hauser	56	1610612738	Boston Celtics
-29	1642917	f	0	Max Shulga	2	1610612738	Boston Celtics
-30	1630625	f	0	Dalano Banton	6	1610612738	Boston Celtics
-31	1630568	f	0	Luka Garza	19	1610612738	Boston Celtics
-32	1631248	f	0	Baylor Scheierman	11	1610612738	Boston Celtics
-33	1642873	f	0	Amari Williams	1	1610612738	Boston Celtics
-34	1629674	f	0	Neemias Queta	14	1610612738	Boston Celtics
-35	201935	f	8	James Harden	191	1610612739	Cleveland Cavaliers
-36	1629622	f	0	Max Strus	82	1610612739	Cleveland Cavaliers
-37	1628418	f	0	Thomas Bryant	32	1610612739	Cleveland Cavaliers
-38	1630596	f	1	Evan Mobley	43	1610612739	Cleveland Cavaliers
-39	1630241	f	0	Sam Merrill	43	1610612739	Cleveland Cavaliers
-40	203471	f	0	Dennis Schröder	91	1610612739	Cleveland Cavaliers
-41	1641854	f	0	Craig Porter Jr.	13	1610612739	Cleveland Cavaliers
-42	1642434	f	0	Riley Minix	0	1610612739	Cleveland Cavaliers
-43	1631165	f	0	Keon Ellis	12	1610612739	Cleveland Cavaliers
-44	1642281	f	0	Jaylon Tyson	21	1610612739	Cleveland Cavaliers
-45	1642400	f	0	Tristan Enaruna	0	1610612739	Cleveland Cavaliers
-46	1626204	f	0	Larry Nance Jr.	32	1610612739	Cleveland Cavaliers
-47	1642878	f	0	Tyrese Proctor	4	1610612739	Cleveland Cavaliers
-48	1628386	f	0	Jarrett Allen	45	1610612739	Cleveland Cavaliers
-49	1629731	f	0	Dean Wade	32	1610612739	Cleveland Cavaliers
-50	1630846	f	0	Olivier Sarr	0	1610612739	Cleveland Cavaliers
-51	1641772	f	0	Nae'Qwan Tomlin	7	1610612739	Cleveland Cavaliers
-52	1628378	f	3	Donovan Mitchell	81	1610612739	Cleveland Cavaliers
-53	1642490	f	0	Josh Oduro	0	1610612740	New Orleans Pelicans
-54	1642847	f	0	Jeremiah Fears	0	1610612740	New Orleans Pelicans
-55	1629627	f	0	Zion Williamson	0	1610612740	New Orleans Pelicans
-56	1630529	f	0	Herbert Jones	10	1610612740	New Orleans Pelicans
-57	1629673	f	0	Jordan Poole	35	1610612740	New Orleans Pelicans
-58	1630621	f	0	Hunter Dickinson	0	1610612740	New Orleans Pelicans
-59	1627749	f	0	Dejounte Murray	21	1610612740	New Orleans Pelicans
-60	201599	f	3	DeAndre Jordan	73	1610612740	New Orleans Pelicans
-61	1631121	f	0	Bryce McGowens	0	1610612740	New Orleans Pelicans
-62	1642877	f	0	Micah Peavy	0	1610612740	New Orleans Pelicans
-63	1631255	f	0	Karlo Matković	0	1610612740	New Orleans Pelicans
-64	1642274	f	0	Yves Missi	0	1610612740	New Orleans Pelicans
-65	1642852	f	0	Derik Queen	0	1610612740	New Orleans Pelicans
-66	1641725	f	0	Trey Alexander	0	1610612740	New Orleans Pelicans
-67	1641722	f	0	Jordan Hawkins	3	1610612740	New Orleans Pelicans
-68	1630530	f	0	Trey Murphy III	10	1610612740	New Orleans Pelicans
-69	1630180	f	0	Saddiq Bey	6	1610612740	New Orleans Pelicans
-70	1626172	f	0	Kevon Looney	89	1610612740	New Orleans Pelicans
-71	1629012	f	0	Collin Sexton	0	1610612741	Chicago Bulls
-72	1630581	f	0	Josh Giddey	10	1610612741	Chicago Bulls
-73	1630644	f	0	Mac McClung	0	1610612741	Chicago Bulls
-74	1642265	f	0	Rob Dillingham	3	1610612741	Chicago Bulls
-75	1642530	f	0	Yuki Kawamura	0	1610612741	Chicago Bulls
-76	1631159	f	0	Leonard Miller	6	1610612741	Chicago Bulls
-77	1628380	f	0	Zach Collins	20	1610612741	Chicago Bulls
-78	1630208	f	0	Nick Richards	0	1610612741	Chicago Bulls
-79	1641824	f	0	Matas Buzelis	0	1610612741	Chicago Bulls
-80	1631338	f	0	Mouhamadou Gueye	0	1610612741	Chicago Bulls
-81	1629014	f	0	Anfernee Simons	15	1610612741	Chicago Bulls
-82	1642855	f	0	Noa Essengue	0	1610612741	Chicago Bulls
-83	1630188	f	0	Jalen Smith	13	1610612741	Chicago Bulls
-84	1627824	f	0	Guerschon Yabusele	16	1610612741	Chicago Bulls
-85	1630200	f	0	Tre Jones	0	1610612741	Chicago Bulls
-86	1630171	f	0	Isaac Okoro	26	1610612741	Chicago Bulls
-87	1630172	f	0	Patrick Williams	5	1610612741	Chicago Bulls
-88	1642950	f	0	Lachlan Olbrich	0	1610612741	Chicago Bulls
-89	1642967	f	0	John Poulakidas	0	1610612742	Dallas Mavericks
-90	1631108	f	0	Max Christie	9	1610612742	Dallas Mavericks
-91	1641726	f	0	Dereck Lively II	21	1610612742	Dallas Mavericks
-92	203939	f	0	Dwight Powell	44	1610612742	Dallas Mavericks
-93	1642358	f	0	AJ Johnson	0	1610612742	Dallas Mavericks
-94	1642948	f	0	Ryan Nembhard	0	1610612742	Dallas Mavericks
-95	1630314	f	0	Brandon Williams	0	1610612742	Dallas Mavericks
-96	202681	f	3	Kyrie Irving	96	1610612742	Dallas Mavericks
-97	1630230	f	0	Naji Marshall	10	1610612742	Dallas Mavericks
-98	1628997	f	0	Caleb Martin	45	1610612742	Dallas Mavericks
-99	203114	f	0	Khris Middleton	80	1610612742	Dallas Mavericks
-100	1629655	f	0	Daniel Gafford	27	1610612742	Dallas Mavericks
-101	1641890	f	0	Tyler Smith	0	1610612742	Dallas Mavericks
-102	1629023	f	0	P.J. Washington	22	1610612742	Dallas Mavericks
-103	1630619	f	0	Moussa Cisse	0	1610612742	Dallas Mavericks
-104	202691	f	2	Klay Thompson	158	1610612742	Dallas Mavericks
-105	1642843	f	0	Cooper Flagg	0	1610612742	Dallas Mavericks
-106	1628963	f	0	Marvin Bagley III	2	1610612742	Dallas Mavericks
-107	1631128	f	0	Christian Braun	51	1610612743	Denver Nuggets
-108	1642938	f	0	Curtis Jones	0	1610612743	Denver Nuggets
-109	1631124	f	0	Julian Strawther	14	1610612743	Denver Nuggets
-110	1626145	f	0	Tyus Jones	30	1610612743	Denver Nuggets
-111	1631212	f	0	Peyton Watson	29	1610612743	Denver Nuggets
-112	203501	f	0	Tim Hardaway Jr.	54	1610612743	Denver Nuggets
-113	1628971	f	0	Bruce Brown	46	1610612743	Denver Nuggets
-114	1641747	f	0	DaRon Holmes II	2	1610612743	Denver Nuggets
-115	203999	f	8	Nikola Jokić	100	1610612743	Denver Nuggets
-116	202685	f	0	Jonas Valančiūnas	62	1610612743	Denver Nuggets
-117	1642461	f	0	Spencer Jones	6	1610612743	Denver Nuggets
-118	1630192	f	0	Zeke Nnaji	23	1610612743	Denver Nuggets
-119	1629661	f	0	Cameron Johnson	44	1610612743	Denver Nuggets
-120	1629618	f	0	Jalen Pickett	13	1610612743	Denver Nuggets
-121	1642354	f	0	KJ Simpson	0	1610612743	Denver Nuggets
-122	1627750	f	1	Jamal Murray	85	1610612743	Denver Nuggets
-123	203932	f	0	Aaron Gordon	69	1610612743	Denver Nuggets
-124	1631223	f	0	David Roddy	8	1610612743	Denver Nuggets
-125	1627780	f	0	Gary Payton II	35	1610612744	Golden State Warriors
-126	1641764	f	0	Brandin Podziemski	12	1610612744	Golden State Warriors
-127	1642954	f	0	Will Richard	0	1610612744	Golden State Warriors
-128	1630541	f	0	Moses Moody	37	1610612744	Golden State Warriors
-129	204001	f	0	Kristaps Porziņģis	28	1610612744	Golden State Warriors
-130	1629001	f	0	De'Anthony Melton	27	1610612744	Golden State Warriors
-131	202710	f	5	Jimmy Butler III	130	1610612744	Golden State Warriors
-132	1630611	f	0	Gui Santos	10	1610612744	Golden State Warriors
-133	1643018	f	0	LJ Cryer	0	1610612744	Golden State Warriors
-134	1631466	f	0	Nate Williams	3	1610612744	Golden State Warriors
-135	201143	f	1	Al Horford	197	1610612744	Golden State Warriors
-136	1642366	f	0	Quinten Post	12	1610612744	Golden State Warriors
-137	203110	f	2	Draymond Green	169	1610612744	Golden State Warriors
-138	1629646	f	0	Charles Bassey	3	1610612744	Golden State Warriors
-139	201939	f	11	Stephen Curry	155	1610612744	Golden State Warriors
-140	203552	f	0	Seth Curry	41	1610612744	Golden State Warriors
-141	1642502	f	0	Malevy Leons	0	1610612744	Golden State Warriors
-142	1630311	f	0	Pat Spencer	8	1610612744	Golden State Warriors
-143	1628988	f	0	Aaron Holiday	23	1610612745	Houston Rockets
-144	1641708	f	0	Amen Thompson	13	1610612745	Houston Rockets
-145	1627827	f	0	Dorian Finney-Smith	44	1610612745	Houston Rockets
-146	1631120	f	0	JD Davison	6	1610612745	Houston Rockets
-147	1627832	f	0	Fred VanVleet	59	1610612745	Houston Rockets
-148	201142	f	12	Kevin Durant	171	1610612745	Houston Rockets
-149	1630256	f	0	Jae'Sean Tate	5	1610612745	Houston Rockets
-150	1631095	f	0	Jabari Smith Jr.	13	1610612745	Houston Rockets
-151	203500	f	0	Steven Adams	73	1610612745	Houston Rockets
-152	1641803	f	0	Tristen Newton	0	1610612745	Houston Rockets
-153	1642263	f	0	Reed Sheppard	9	1610612745	Houston Rockets
-154	1631106	f	0	Tari Eason	13	1610612745	Houston Rockets
-155	1629006	f	0	Josh Okogie	21	1610612745	Houston Rockets
-156	1642384	f	0	Isaiah Crawford	0	1610612745	Houston Rockets
-157	1630578	f	0	Alperen Sengun	13	1610612745	Houston Rockets
-158	203991	f	0	Clint Capela	91	1610612745	Houston Rockets
-159	201145	f	0	Jeff Green	108	1610612745	Houston Rockets
-160	1641807	f	0	Norchad Omier	0	1610612746	LA Clippers
-161	1642951	f	0	Sean Pedulla	0	1610612746	LA Clippers
-162	203078	f	1	Bradley Beal	49	1610612746	LA Clippers
-163	202695	f	7	Kawhi Leonard	146	1610612746	LA Clippers
-164	1642920	f	0	Kobe Sanders	0	1610612746	LA Clippers
-165	1627884	f	0	Derrick Jones Jr.	51	1610612746	LA Clippers
-166	203992	f	0	Bogdan Bogdanović	35	1610612746	LA Clippers
-167	1627739	f	0	Kris Dunn	12	1610612746	LA Clippers
-168	1631097	f	0	Bennedict Mathurin	22	1610612746	LA Clippers
-169	1629636	f	0	Darius Garland	22	1610612746	LA Clippers
-170	201572	f	0	Brook Lopez	89	1610612746	LA Clippers
-171	1642353	f	0	Cam Christie	3	1610612746	LA Clippers
-172	1631102	f	0	TyTy Washington Jr.	0	1610612746	LA Clippers
-173	1642949	f	0	Yanic Konan Niederhäuser	0	1610612746	LA Clippers
-174	1628381	f	0	John Collins	29	1610612746	LA Clippers
-175	1641757	f	0	Jordan Miller	3	1610612746	LA Clippers
-176	1630543	f	0	Isaiah Jackson	15	1610612746	LA Clippers
-177	201587	f	0	Nicolas Batum	76	1610612746	LA Clippers
-178	1642876	f	0	Adou Thiero	6	1610612747	Los Angeles Lakers
-179	1629020	f	0	Jarred Vanderbilt	36	1610612747	Los Angeles Lakers
-180	1642261	f	0	Dalton Knecht	7	1610612747	Los Angeles Lakers
-181	1629028	f	0	Deandre Ayton	55	1610612747	Los Angeles Lakers
-182	1642355	f	0	Bronny James	10	1610612747	Los Angeles Lakers
-183	1628379	f	0	Luke Kennard	38	1610612747	Los Angeles Lakers
-184	1629637	f	0	Jaxson Hayes	24	1610612747	Los Angeles Lakers
-185	1631222	f	0	Jake LaRavia	8	1610612747	Los Angeles Lakers
-186	1628467	f	0	Maxi Kleber	0	1610612747	Los Angeles Lakers
-187	1630559	f	0	Austin Reaves	32	1610612747	Los Angeles Lakers
-188	1631166	f	0	Drew Timme	0	1610612747	Los Angeles Lakers
-189	1641733	f	0	Nick Smith Jr.	6	1610612747	Los Angeles Lakers
-190	2544	f	21	LeBron James	302	1610612747	Los Angeles Lakers
-191	1629060	f	0	Rui Hachimura	41	1610612747	Los Angeles Lakers
-192	1643024	f	0	Chris Mañon	0	1610612747	Los Angeles Lakers
-193	203935	f	0	Marcus Smart	118	1610612747	Los Angeles Lakers
-194	1629029	f	6	Luka Dončić	55	1610612747	Los Angeles Lakers
-195	1631323	f	0	Simone Fontecchio	0	1610612748	Miami Heat
-196	1631211	f	0	Trevor Keels	0	1610612748	Miami Heat
-197	1631107	f	0	Nikola Jović	16	1610612748	Miami Heat
-198	1642276	f	0	Kel'el Ware	4	1610612748	Miami Heat
-199	1641796	f	0	Pelle Larsson	4	1610612748	Miami Heat
-200	1631170	f	0	Jaime Jaquez Jr.	7	1610612748	Miami Heat
-201	1630696	f	0	Dru Smith	0	1610612748	Miami Heat
-202	1628389	f	0	Bam Adebayo	78	1610612748	Miami Heat
-203	1629639	f	0	Tyler Herro	50	1610612748	Miami Heat
-204	1642066	f	0	Myron Gardner	0	1610612748	Miami Heat
-205	1642352	f	0	Keshad Johnson	2	1610612748	Miami Heat
-206	1642443	f	0	Jahmir Young	0	1610612748	Miami Heat
-207	203952	f	0	Andrew Wiggins	44	1610612748	Miami Heat
-208	1626181	f	0	Norman Powell	91	1610612748	Miami Heat
-209	1642857	f	0	Kasparas Jakučionis	0	1610612748	Miami Heat
-210	1630558	f	0	Davion Mitchell	11	1610612748	Miami Heat
-211	1642884	f	0	Vladislav Goldin	0	1610612748	Miami Heat
-212	1630579	f	0	Jericho Sims	10	1610612749	Milwaukee Bucks
-213	1626167	f	0	Myles Turner	66	1610612749	Milwaukee Bucks
-214	1629018	f	0	Gary Trent Jr.	16	1610612749	Milwaukee Bucks
-215	1629645	f	0	Kevin Porter Jr.	5	1610612749	Milwaukee Bucks
-216	1626171	f	0	Bobby Portis	54	1610612749	Milwaukee Bucks
-217	203914	f	0	Gary Harris	39	1610612749	Milwaukee Bucks
-218	1627752	f	0	Taurean Prince	26	1610612749	Milwaukee Bucks
-219	1631157	f	0	Ryan Rollins	3	1610612749	Milwaukee Bucks
-220	1628398	f	0	Kyle Kuzma	32	1610612749	Milwaukee Bucks
-221	1631260	f	0	AJ Green	11	1610612749	Milwaukee Bucks
-222	1631172	f	0	Ousmane Dieng	13	1610612749	Milwaukee Bucks
-223	1630828	f	0	Alex Antetokounmpo	0	1610612749	Milwaukee Bucks
-224	1642504	f	0	Cormac Ryan	0	1610612749	Milwaukee Bucks
-225	203507	f	9	Giannis Antetokounmpo	84	1610612749	Milwaukee Bucks
-226	1631250	f	0	Pete Nance	0	1610612749	Milwaukee Bucks
-227	203648	f	0	Thanasis Antetokounmpo	25	1610612749	Milwaukee Bucks
-228	1641748	f	0	Andre Jackson Jr.	7	1610612749	Milwaukee Bucks
-229	1628978	f	0	Donte DiVincenzo	58	1610612750	Minnesota Timberwolves
-230	1630545	f	0	Terrence Shannon Jr.	18	1610612750	Minnesota Timberwolves
-231	1630183	f	0	Jaden McDaniels	49	1610612750	Minnesota Timberwolves
-232	1641763	f	0	Julian Phillips	5	1610612750	Minnesota Timberwolves
-233	1630162	f	2	Anthony Edwards	52	1610612750	Minnesota Timberwolves
-234	204060	f	0	Joe Ingles	60	1610612750	Minnesota Timberwolves
-235	1630538	f	0	Bones Hyland	23	1610612750	Minnesota Timberwolves
-236	201144	f	0	Mike Conley	120	1610612750	Minnesota Timberwolves
-237	1629675	f	0	Naz Reid	48	1610612750	Minnesota Timberwolves
-238	203937	f	0	Kyle Anderson	76	1610612750	Minnesota Timberwolves
-239	1630245	f	0	Ayo Dosunmu	15	1610612750	Minnesota Timberwolves
-240	1642389	f	0	Zyon Pullin	0	1610612750	Minnesota Timberwolves
-241	1642866	f	0	Joan Beringer	5	1610612750	Minnesota Timberwolves
-242	1641740	f	0	Jaylen Clark	11	1610612750	Minnesota Timberwolves
-243	1642402	f	0	Enrique Freeman	0	1610612750	Minnesota Timberwolves
-244	203497	f	4	Rudy Gobert	96	1610612750	Minnesota Timberwolves
-245	203944	f	2	Julius Randle	42	1610612750	Minnesota Timberwolves
-246	1642911	f	0	Rocco Zikarsky	0	1610612750	Minnesota Timberwolves
-247	1631169	f	0	Josh Minott	11	1610612751	Brooklyn Nets
-248	1630533	f	0	Ziaire Williams	14	1610612751	Brooklyn Nets
-249	1642874	f	0	Danny Wolf	0	1610612751	Brooklyn Nets
-250	1642962	f	0	Drake Powell	0	1610612751	Brooklyn Nets
-251	1642856	f	0	Egor Dëmin	0	1610612751	Brooklyn Nets
-252	1630604	f	0	E.J. Liddell	1	1610612751	Brooklyn Nets
-253	1630623	f	0	Tyson Etienne	0	1610612751	Brooklyn Nets
-254	1629611	f	0	Terance Mann	43	1610612751	Brooklyn Nets
-255	1629008	f	0	Michael Porter Jr.	75	1610612751	Brooklyn Nets
-256	1641869	f	0	Malachi Smith	0	1610612751	Brooklyn Nets
-257	1630549	f	0	Day'Ron Sharpe	3	1610612751	Brooklyn Nets
-258	1641730	f	0	Noah Clowney	0	1610612751	Brooklyn Nets
-259	1630592	f	0	Jalen Wilson	0	1610612751	Brooklyn Nets
-260	1630534	f	0	Ochai Agbaji	0	1610612751	Brooklyn Nets
-261	1643052	f	0	Chaney Johnson	0	1610612751	Brooklyn Nets
-262	1629651	f	0	Nic Claxton	20	1610612751	Brooklyn Nets
-263	1642879	f	0	Ben Saraf	0	1610612751	Brooklyn Nets
-264	1642849	f	0	Nolan Traore	0	1610612751	Brooklyn Nets
-265	203903	f	0	Jordan Clarkson	61	1610612752	New York Knicks
-266	1641794	f	0	Dillon Jones	10	1610612752	New York Knicks
-267	1630540	f	0	Miles McBride	58	1610612752	New York Knicks
-268	1628404	f	0	Josh Hart	61	1610612752	New York Knicks
-269	1642359	f	0	Pacôme Dadiet	9	1610612752	New York Knicks
-270	1630631	f	0	Jose Alvarado	28	1610612752	New York Knicks
-271	1628384	f	0	OG Anunoby	71	1610612752	New York Knicks
-272	1641755	f	0	Kevin McCullar Jr.	0	1610612752	New York Knicks
-273	1628973	f	3	Jalen Brunson	86	1610612752	New York Knicks
-274	1642278	f	0	Tyler Kolek	11	1610612752	New York Knicks
-275	1631110	f	0	Jeremy Sochan	8	1610612752	New York Knicks
-276	1629011	f	0	Mitchell Robinson	53	1610612752	New York Knicks
-277	1628969	f	0	Mikal Bridges	76	1610612752	New York Knicks
-278	1626157	f	3	Karl-Anthony Towns	69	1610612752	New York Knicks
-279	1629013	f	0	Landry Shamet	83	1610612752	New York Knicks
-280	1641998	f	0	Trey Jemison III	0	1610612752	New York Knicks
-281	1642885	f	0	Mohamed Diawara	6	1610612752	New York Knicks
-282	1630574	f	0	Ariel Hukporti	13	1610612752	New York Knicks
-283	1631457	f	0	Alex Morales	0	1610612753	Orlando Magic
-284	1641710	f	0	Anthony Black	14	1610612753	Orlando Magic
-285	1628371	f	0	Jonathan Isaac	17	1610612753	Orlando Magic
-286	1628975	f	0	Jevon Carter	25	1610612753	Orlando Magic
-287	1630217	f	0	Desmond Bane	34	1610612753	Orlando Magic
-288	1630591	f	0	Jalen Suggs	14	1610612753	Orlando Magic
-289	1631094	f	0	Paolo Banchero	19	1610612753	Orlando Magic
-290	1631288	f	0	Jamal Cain	7	1610612753	Orlando Magic
-291	1642859	f	0	Jase Richardson	1	1610612753	Orlando Magic
-292	1641724	f	0	Jett Howard	4	1610612753	Orlando Magic
-293	1630658	f	0	Colin Castleton	0	1610612753	Orlando Magic
-294	1629021	f	0	Moritz Wagner	9	1610612753	Orlando Magic
-295	1630532	f	0	Franz Wagner	16	1610612753	Orlando Magic
-296	1641783	f	0	Tristan da Silva	9	1610612753	Orlando Magic
-297	1628976	f	0	Wendell Carter Jr.	19	1610612753	Orlando Magic
-298	1629048	f	0	Goga Bitadze	11	1610612753	Orlando Magic
-299	1642869	f	0	Noah Penda	1	1610612753	Orlando Magic
-300	1630169	f	2	Tyrese Haliburton	38	1610612754	Indiana Pacers
-301	1630167	f	0	Obi Toppin	56	1610612754	Indiana Pacers
-302	1629614	f	0	Andrew Nembhard	40	1610612754	Indiana Pacers
-303	1643007	f	0	Taelon Peter	0	1610612754	Indiana Pacers
-304	1641716	f	0	Jarace Walker	21	1610612754	Indiana Pacers
-305	1642880	f	0	Kam Jones	0	1610612754	Indiana Pacers
-306	204456	f	0	T.J. McConnell	62	1610612754	Indiana Pacers
-307	1630695	f	0	Micah Potter	0	1610612754	Indiana Pacers
-308	1642277	f	0	Johnny Furphy	11	1610612754	Indiana Pacers
-309	1641771	f	0	Jalen Slawson	0	1610612754	Indiana Pacers
-310	1630174	f	0	Aaron Nesmith	60	1610612754	Indiana Pacers
-311	1641738	f	0	Kobe Brown	6	1610612754	Indiana Pacers
-312	1641767	f	0	Ben Sheppard	38	1610612754	Indiana Pacers
-313	1631245	f	0	Quenton Jackson	0	1610612754	Indiana Pacers
-314	1630643	f	0	Jay Huff	2	1610612754	Indiana Pacers
-315	1627826	f	0	Ivica Zubac	52	1610612754	Indiana Pacers
-316	1627783	f	2	Pascal Siakam	93	1610612754	Indiana Pacers
-317	1630679	f	0	Ethan Thompson	0	1610612754	Indiana Pacers
-318	1630178	f	1	Tyrese Maxey	52	1610612755	Philadelphia 76ers
-319	203083	f	1	Andre Drummond	28	1610612755	Philadelphia 76ers
-320	1629656	f	0	Quentin Grimes	20	1610612755	Philadelphia 76ers
-321	200768	f	1	Kyle Lowry	138	1610612755	Philadelphia 76ers
-322	202331	f	6	Paul George	125	1610612755	Philadelphia 76ers
-323	1626162	f	0	Kelly Oubre Jr.	35	1610612755	Philadelphia 76ers
-324	1642348	f	0	Justin Edwards	9	1610612755	Philadelphia 76ers
-325	1630570	f	0	Trendon Watford	7	1610612755	Philadelphia 76ers
-326	1631207	f	0	Dalen Terry	7	1610612755	Philadelphia 76ers
-327	1630699	f	0	MarJon Beauchamp	6	1610612755	Philadelphia 76ers
-328	203954	f	5	Joel Embiid	66	1610612755	Philadelphia 76ers
-329	1641780	f	0	Johni Broome	2	1610612755	Philadelphia 76ers
-330	1631213	f	0	Tyrese Martin	0	1610612755	Philadelphia 76ers
-331	1631230	f	0	Dominick Barlow	9	1610612755	Philadelphia 76ers
-332	1641737	f	0	Adem Bona	10	1610612755	Philadelphia 76ers
-333	1631133	f	0	Jabari Walker	6	1610612755	Philadelphia 76ers
-334	1642845	f	0	VJ Edgecombe	11	1610612755	Philadelphia 76ers
-335	1626220	f	0	Royce O'Neale	52	1610612756	Phoenix Suns
-336	1642346	f	0	Ryan Dunn	4	1610612756	Phoenix Suns
-337	1626164	f	2	Devin Booker	51	1610612756	Phoenix Suns
-338	1629599	f	0	Amir Coffey	24	1610612756	Phoenix Suns
-339	1628415	f	0	Dillon Brooks	33	1610612756	Phoenix Suns
-340	1630224	f	0	Jalen Green	11	1610612756	Phoenix Suns
-341	1629312	f	0	Haywood Highsmith	37	1610612756	Phoenix Suns
-342	1628960	f	0	Grayson Allen	28	1610612756	Phoenix Suns
-343	1642863	f	0	Khaman Maluach	4	1610612756	Phoenix Suns
-344	1642345	f	0	Oso Ighodaro	4	1610612756	Phoenix Suns
-345	1631221	f	0	Collin Gillespie	4	1610612756	Phoenix Suns
-346	1642886	f	0	Koby Brea	0	1610612756	Phoenix Suns
-347	1631109	f	0	Mark Williams	0	1610612756	Phoenix Suns
-348	1631123	f	0	Jamaree Bouyea	4	1610612756	Phoenix Suns
-349	1630587	f	0	Isaiah Livers	0	1610612756	Phoenix Suns
-350	1642853	f	0	Rasheer Fleming	4	1610612756	Phoenix Suns
-351	1643047	f	0	CJ Huntley	0	1610612756	Phoenix Suns
-352	1630692	f	0	Jordan Goodwin	5	1610612756	Phoenix Suns
-353	1643257	f	0	Jayson Kent	0	1610612757	Portland Trail Blazers
-354	1630703	f	0	Scoot Henderson	5	1610612757	Portland Trail Blazers
-355	203081	f	7	Damian Lillard	68	1610612757	Portland Trail Blazers
-356	1631104	f	0	Blake Wesley	4	1610612757	Portland Trail Blazers
-357	1631126	f	0	Caleb Love	0	1610612757	Portland Trail Blazers
-358	1642959	f	0	Chris Youngblood	0	1610612757	Portland Trail Blazers
-359	1629680	f	0	Matisse Thybulle	29	1610612757	Portland Trail Blazers
-360	201950	f	0	Jrue Holiday	102	1610612757	Portland Trail Blazers
-361	1630166	f	0	Deni Avdija	5	1610612757	Portland Trail Blazers
-362	203924	f	0	Jerami Grant	40	1610612757	Portland Trail Blazers
-363	1642905	f	0	Yang Hansen	4	1610612757	Portland Trail Blazers
-364	1631101	f	0	Shaedon Sharpe	5	1610612757	Portland Trail Blazers
-365	1642270	f	0	Donovan Clingan	5	1610612757	Portland Trail Blazers
-366	1631200	f	0	Kris Murray	5	1610612757	Portland Trail Blazers
-367	1630249	f	0	Vít Krejčí	4	1610612757	Portland Trail Blazers
-368	1641739	f	0	Toumani Camara	5	1610612757	Portland Trail Blazers
-369	1629057	f	0	Robert Williams III	61	1610612757	Portland Trail Blazers
-370	1631321	f	0	Sidy Cissoko	4	1610612757	Portland Trail Blazers
-371	1628370	f	0	Malik Monk	7	1610612758	Sacramento Kings
-372	1642363	f	0	Nique Clifford	0	1610612758	Sacramento Kings
-373	1630165	f	0	Killian Hayes	0	1610612758	Sacramento Kings
-374	203926	f	0	Doug McDermott	25	1610612758	Sacramento Kings
-375	203897	f	0	Zach LaVine	4	1610612758	Sacramento Kings
-376	1630173	f	0	Precious Achiuwa	26	1610612758	Sacramento Kings
-377	201942	f	3	DeMar DeRozan	63	1610612758	Sacramento Kings
-378	1627734	f	2	Domantas Sabonis	20	1610612758	Sacramento Kings
-379	1631099	f	0	Keegan Murray	7	1610612758	Sacramento Kings
-380	1629631	f	0	De'Andre Hunter	24	1610612758	Sacramento Kings
-381	201566	f	9	Russell Westbrook	135	1610612758	Sacramento Kings
-382	1629234	f	0	Drew Eubanks	6	1610612758	Sacramento Kings
-383	1642269	f	0	Devin Carter	0	1610612758	Sacramento Kings
-384	1631116	f	0	Patrick Baldwin Jr.	3	1610612758	Sacramento Kings
-385	1641815	f	0	Isaiah Stevens	0	1610612758	Sacramento Kings
-386	1631342	f	0	Daeqwon Plowden	0	1610612758	Sacramento Kings
-387	1642928	f	0	Dylan Cardwell	0	1610612758	Sacramento Kings
-388	1642875	f	0	Maxime Raynaud	0	1610612758	Sacramento Kings
-389	1629162	f	0	Jordan McLaughlin	23	1610612759	San Antonio Spurs
-390	1641705	f	1	Victor Wembanyama	22	1610612759	San Antonio Spurs
-391	1642844	f	0	Dylan Harper	23	1610612759	San Antonio Spurs
-392	1629640	f	0	Keldon Johnson	23	1610612759	San Antonio Spurs
-393	1628368	f	1	De'Aaron Fox	28	1610612759	San Antonio Spurs
-394	1642264	f	0	Stephon Castle	23	1610612759	San Antonio Spurs
-395	1628436	f	0	Luke Kornet	66	1610612759	San Antonio Spurs
-396	203482	f	0	Kelly Olynyk	57	1610612759	San Antonio Spurs
-397	1642868	f	0	Carter Bryant	22	1610612759	San Antonio Spurs
-398	1641801	f	0	Emanuel Miller	0	1610612759	San Antonio Spurs
-399	202687	f	0	Bismack Biyombo	49	1610612759	San Antonio Spurs
-400	1630170	f	0	Devin Vassell	23	1610612759	San Antonio Spurs
-401	1642357	f	0	David Jones Garcia	0	1610612759	San Antonio Spurs
-402	1630577	f	0	Julian Champagnie	23	1610612759	San Antonio Spurs
-403	203084	f	0	Harrison Barnes	91	1610612759	San Antonio Spurs
-404	1630322	f	0	Lindy Waters III	12	1610612759	San Antonio Spurs
-405	203486	f	0	Mason Plumlee	77	1610612759	San Antonio Spurs
-406	1631127	f	0	Harrison Ingram	0	1610612759	San Antonio Spurs
-407	1628983	f	4	Shai Gilgeous-Alexander	61	1610612760	Oklahoma City Thunder
-408	1642272	f	0	Jared McCain	15	1610612760	Oklahoma City Thunder
-409	1629652	f	0	Luguentz Dort	54	1610612760	Oklahoma City Thunder
-410	1631119	f	0	Jaylin Williams	42	1610612760	Oklahoma City Thunder
-411	1631096	f	1	Chet Holmgren	48	1610612760	Oklahoma City Thunder
-412	1631114	f	1	Jalen Williams	38	1610612760	Oklahoma City Thunder
-413	1627936	f	0	Alex Caruso	69	1610612760	Oklahoma City Thunder
-414	1630198	f	0	Isaiah Joe	55	1610612760	Oklahoma City Thunder
-415	1642850	f	0	Thomas Sorber	0	1610612760	Oklahoma City Thunder
-416	1642362	f	0	Payton Sandfort	0	1610612760	Oklahoma City Thunder
-417	1642382	f	0	Branden Carlson	0	1610612760	Oklahoma City Thunder
-418	1630598	f	0	Aaron Wiggins	45	1610612760	Oklahoma City Thunder
-419	1641717	f	0	Cason Wallace	48	1610612760	Oklahoma City Thunder
-420	1642964	f	0	Brooks Barnhizer	0	1610612760	Oklahoma City Thunder
-421	1642349	f	0	Ajay Mitchell	23	1610612760	Oklahoma City Thunder
-422	1629026	f	0	Kenrich Williams	34	1610612760	Oklahoma City Thunder
-423	1642260	f	0	Nikola Topić	9	1610612760	Oklahoma City Thunder
-424	1628392	f	0	Isaiah Hartenstein	64	1610612760	Oklahoma City Thunder
-425	1630639	f	0	A.J. Lawson	17	1610612761	Toronto Raptors
-426	1641711	f	0	Gradey Dick	3	1610612761	Toronto Raptors
-427	1642367	f	0	Jonathan Mogbo	3	1610612761	Toronto Raptors
-428	1627742	f	0	Brandon Ingram	15	1610612761	Toronto Raptors
-429	1630567	f	0	Scottie Barnes	11	1610612761	Toronto Raptors
-430	1630193	f	0	Immanuel Quickley	13	1610612761	Toronto Raptors
-431	1629628	f	0	RJ Barrett	23	1610612761	Toronto Raptors
-432	1642867	f	0	Collin Murray-Boyles	7	1610612761	Toronto Raptors
-433	1642266	f	0	Ja'Kobe Walter	7	1610612761	Toronto Raptors
-434	202066	f	0	Garrett Temple	33	1610612761	Toronto Raptors
-435	1627751	f	0	Jakob Poeltl	29	1610612761	Toronto Raptors
-436	1642347	f	0	Jamal Shead	7	1610612761	Toronto Raptors
-437	1642935	f	0	Chucky Hepburn	0	1610612761	Toronto Raptors
-438	1631218	f	0	Trayce Jackson-Davis	12	1610612761	Toronto Raptors
-439	1630572	f	0	Sandro Mamukelashvili	7	1610612761	Toronto Raptors
-440	1642918	f	0	Alijah Martin	0	1610612761	Toronto Raptors
-441	1642419	f	0	Jamison Battle	6	1610612761	Toronto Raptors
-442	1643060	f	0	Hayden Gray	0	1610612762	Utah Jazz
-443	1642396	f	0	Blake Hinson	0	1610612762	Utah Jazz
-444	1641718	f	0	Keyonte George	0	1610612762	Utah Jazz
-445	1642262	f	0	Cody Williams	0	1610612762	Utah Jazz
-446	1642268	f	0	Isaiah Collier	0	1610612762	Utah Jazz
-447	1629004	f	0	Svi Mykhailiuk	11	1610612762	Utah Jazz
-448	1641989	f	0	Elijah Harkless	0	1610612762	Utah Jazz
-449	1642846	f	0	Ace Bailey	0	1610612762	Utah Jazz
-450	1628991	f	0	Jaren Jackson Jr.	27	1610612762	Utah Jazz
-451	1643016	f	0	Bez Mbeng	0	1610612762	Utah Jazz
-452	1642271	f	0	Kyle Filipowski	0	1610612762	Utah Jazz
-453	1628374	f	0	Lauri Markkanen	0	1610612762	Utah Jazz
-454	1631117	f	0	Walker Kessler	0	1610612762	Utah Jazz
-455	1641729	f	0	Brice Sensabaugh	0	1610612762	Utah Jazz
-456	203994	f	0	Jusuf Nurkić	20	1610612762	Utah Jazz
-457	1631131	f	0	Oscar Tshiebwe	0	1610612762	Utah Jazz
-458	201567	f	2	Kevin Love	88	1610612762	Utah Jazz
-459	1629723	f	0	John Konchar	18	1610612762	Utah Jazz
-460	1642942	f	0	Jahmai Mashack	0	1610612763	Memphis Grizzlies
-461	1642377	f	0	Jaylen Wells	0	1610612763	Memphis Grizzlies
-462	1630590	f	0	Scotty Pippen Jr.	4	1610612763	Memphis Grizzlies
-463	1629660	f	0	Ty Jerome	9	1610612763	Memphis Grizzlies
-464	203484	f	0	Kentavious Caldwell-Pope	67	1610612763	Memphis Grizzlies
-465	1642383	f	0	Walter Clayton Jr.	0	1610612763	Memphis Grizzlies
-466	1630583	f	0	Santi Aldama	10	1610612763	Memphis Grizzlies
-467	1642914	f	0	Javon Small	0	1610612763	Memphis Grizzlies
-468	1629630	f	1	Ja Morant	22	1610612763	Memphis Grizzlies
-469	1641744	f	0	Zach Edey	4	1610612763	Memphis Grizzlies
-470	1629634	f	0	Brandon Clarke	14	1610612763	Memphis Grizzlies
-471	1641765	f	0	Olivier-Maxence Prosper	3	1610612763	Memphis Grizzlies
-472	1641712	f	0	Rayan Rupert	0	1610612763	Memphis Grizzlies
-473	1641707	f	0	Taylor Hendricks	0	1610612763	Memphis Grizzlies
-474	1642907	f	0	Cedric Coward	0	1610612763	Memphis Grizzlies
-475	1642285	f	0	Cam Spencer	0	1610612763	Memphis Grizzlies
-476	1641713	f	0	GG Jackson	0	1610612763	Memphis Grizzlies
-477	201959	f	0	Taj Gibson	71	1610612763	Memphis Grizzlies
-478	1642882	f	0	Julian Reese	0	1610612764	Washington Wizards
-479	1641731	f	0	Bilal Coulibaly	0	1610612764	Washington Wizards
-480	1641774	f	0	Tristan Vukcevic	0	1610612764	Washington Wizards
-481	1641715	f	0	Cam Whitmore	3	1610612764	Washington Wizards
-482	1629027	f	1	Trae Young	27	1610612764	Washington Wizards
-483	1626156	f	0	D'Angelo Russell	32	1610612764	Washington Wizards
-484	1642364	f	0	Jamir Watkins	0	1610612764	Washington Wizards
-485	1642267	f	0	Bub Carrington	0	1610612764	Washington Wizards
-486	1630702	f	0	Jaden Hardy	19	1610612764	Washington Wizards
-487	1630551	f	0	Justin Champagnie	4	1610612764	Washington Wizards
-488	1642848	f	0	Tre Johnson	0	1610612764	Washington Wizards
-489	1641778	f	0	Leaky Black	0	1610612764	Washington Wizards
-490	1630536	f	0	Sharife Cooper	0	1610612764	Washington Wizards
-491	1630264	f	0	Anthony Gill	4	1610612764	Washington Wizards
-492	1642273	f	0	Kyshawn George	0	1610612764	Washington Wizards
-493	1642259	f	0	Alex Sarr	0	1610612764	Washington Wizards
-494	203076	f	5	Anthony Davis	60	1610612764	Washington Wizards
-495	1642860	f	0	Will Riley	0	1610612764	Washington Wizards
-496	1631105	f	1	Jalen Duren	20	1610612765	Detroit Pistons
-497	1630595	f	2	Cade Cunningham	20	1610612765	Detroit Pistons
-498	1642403	f	0	Isaac Jones	0	1610612765	Detroit Pistons
-499	1641842	f	0	Ronald Holland II	14	1610612765	Detroit Pistons
-500	1630194	f	0	Paul Reed	46	1610612765	Detroit Pistons
-501	1627747	f	0	Caris LeVert	38	1610612765	Detroit Pistons
-502	1641709	f	0	Ausar Thompson	20	1610612765	Detroit Pistons
-503	202699	f	0	Tobias Harris	81	1610612765	Detroit Pistons
-504	1631111	f	0	Wendell Moore Jr.	7	1610612765	Detroit Pistons
-505	1642404	f	0	Chaz Lanier	3	1610612765	Detroit Pistons
-506	1642450	f	0	Daniss Jenkins	14	1610612765	Detroit Pistons
-507	1631204	f	0	Marcus Sasser	6	1610612765	Detroit Pistons
-508	1628989	f	0	Kevin Huerter	35	1610612765	Detroit Pistons
-509	1630191	f	0	Isaiah Stewart	15	1610612765	Detroit Pistons
-510	1629750	f	0	Javonte Green	23	1610612765	Detroit Pistons
-511	1642449	f	0	Tolu Smith	3	1610612765	Detroit Pistons
-512	1629130	f	0	Duncan Robinson	83	1610612765	Detroit Pistons
-513	1628970	f	0	Miles Bridges	0	1610612766	Charlotte Hornets
-514	1630163	f	0	LaMelo Ball	0	1610612766	Charlotte Hornets
-515	1629684	f	0	Grant Williams	61	1610612766	Charlotte Hornets
-516	1629632	f	0	Coby White	5	1610612766	Charlotte Hornets
-517	1642883	f	0	Sion James	0	1610612766	Charlotte Hornets
-518	1642851	f	0	Kon Knueppel	0	1610612766	Charlotte Hornets
-519	1630182	f	0	Josh Green	39	1610612766	Charlotte Hornets
-520	1641750	f	0	Ryan Kalkbrenner	0	1610612766	Charlotte Hornets
-521	1641810	f	0	Antonio Reeves	0	1610612766	Charlotte Hornets
-522	1631217	f	0	Moussa Diabaté	0	1610612766	Charlotte Hornets
-523	1641790	f	0	PJ Hall	0	1610612766	Charlotte Hornets
-524	1641787	f	0	Tosan Evbuomwan	0	1610612766	Charlotte Hornets
-525	1626192	f	0	Pat Connaughton	86	1610612766	Charlotte Hornets
-526	1630544	f	0	Tre Mann	0	1610612766	Charlotte Hornets
-527	1641706	f	0	Brandon Miller	0	1610612766	Charlotte Hornets
-528	1630214	f	0	Xavier Tillman	27	1610612766	Charlotte Hornets
-529	1642275	f	0	Tidjane Salaün	0	1610612766	Charlotte Hornets
-530	1642862	f	0	Liam McNeeley	0	1610612766	Charlotte Hornets
+COPY public.player (id, api_player_id, is_injured, mvp_shares, name, playoff_games, team_id, team_name, all_nba_count, player_net_rating, pie) FROM stdin;
+1	1642933	f	\N	Keshon Gilbert	0	1610612737	Atlanta Hawks	0	-38.1	0.049
+2	1642484	f	\N	RayJ Dennis	0	1610612737	Atlanta Hawks	0	-14.2	0.051
+3	1630228	f	\N	Jonathan Kuminga	40	1610612737	Atlanta Hawks	0	4.1	0.111
+4	1630552	f	\N	Jalen Johnson	14	1610612737	Atlanta Hawks	1	3.2	0.161
+5	1630811	f	\N	Keaton Wallace	3	1610612737	Atlanta Hawks	0	-8.6	0.077
+6	203468	f	\N	CJ McCollum	73	1610612737	Atlanta Hawks	0	1.5	0.105
+7	1629216	f	\N	Gabe Vincent	60	1610612737	Atlanta Hawks	0	1.3	0.033
+8	1630700	f	\N	Dyson Daniels	9	1610612737	Atlanta Hawks	0	6.2	0.106
+9	1629638	f	\N	Nickeil Alexander-Walker	43	1610612737	Atlanta Hawks	0	4	0.105
+10	1627741	f	\N	Buddy Hield	18	1610612737	Atlanta Hawks	0	-4.9	0.085
+11	1642258	f	\N	Zaccharie Risacher	3	1610612737	Atlanta Hawks	0	0.2	0.07
+12	1631132	f	\N	Christian Koloko	0	1610612737	Atlanta Hawks	0	-1.3	0.046
+13	1628396	f	\N	Tony Bradley	24	1610612737	Atlanta Hawks	0	-14.2	0.074
+14	1642854	f	\N	Asa Newell	2	1610612737	Atlanta Hawks	0	-3.8	0.074
+15	1630168	f	\N	Onyeka Okongwu	35	1610612737	Atlanta Hawks	0	2.1	0.104
+16	1631243	f	\N	Mouhamed Gueye	6	1610612737	Atlanta Hawks	0	2.3	0.075
+17	1630557	f	\N	Corey Kispert	5	1610612737	Atlanta Hawks	0	-7	0.088
+18	1629111	f	\N	Jock Landale	8	1610612737	Atlanta Hawks	0	-2.2	0.098
+19	1628369	f	\N	Jayson Tatum	127	1610612738	Boston Celtics	1	10.5	0.159
+20	202696	f	\N	Nikola Vučević	22	1610612738	Boston Celtics	0	-1.7	0.127
+21	1627759	f	\N	Jaylen Brown	142	1610612738	Boston Celtics	1	6.5	0.152
+22	1642910	f	\N	John Tonje	0	1610612738	Boston Celtics	0	-1.8	0.061
+23	1628401	f	\N	Derrick White	90	1610612738	Boston Celtics	0	11.3	0.109
+24	1630202	f	\N	Payton Pritchard	76	1610612738	Boston Celtics	0	8	0.12
+25	1631199	f	\N	Ron Harper Jr.	6	1610612738	Boston Celtics	0	2.7	0.086
+26	1641775	f	\N	Jordan Walsh	15	1610612738	Boston Celtics	0	5.1	0.08
+27	1642864	f	\N	Hugo González	4	1610612738	Boston Celtics	0	11.9	0.067
+28	1630573	f	\N	Sam Hauser	56	1610612738	Boston Celtics	0	8.8	0.08
+29	1642917	f	\N	Max Shulga	2	1610612738	Boston Celtics	0	-7.6	-0.038
+30	1630625	f	\N	Dalano Banton	6	1610612738	Boston Celtics	0	-4.3	0.051
+31	1630568	f	\N	Luka Garza	19	1610612738	Boston Celtics	0	5.8	0.103
+32	1631248	f	\N	Baylor Scheierman	11	1610612738	Boston Celtics	0	7.3	0.085
+33	1642873	f	\N	Amari Williams	1	1610612738	Boston Celtics	0	-17.4	0.079
+34	1629674	f	\N	Neemias Queta	14	1610612738	Boston Celtics	0	13.2	0.13
+35	201935	f	\N	James Harden	191	1610612739	Cleveland Cavaliers	1	1.8	0.143
+36	1629622	f	\N	Max Strus	82	1610612739	Cleveland Cavaliers	0	0.3	0.088
+37	1628418	f	\N	Thomas Bryant	32	1610612739	Cleveland Cavaliers	0	3.6	0.115
+38	1630596	f	\N	Evan Mobley	43	1610612739	Cleveland Cavaliers	1	5.7	0.135
+39	1630241	f	\N	Sam Merrill	43	1610612739	Cleveland Cavaliers	0	7.7	0.081
+40	203471	f	\N	Dennis Schröder	91	1610612739	Cleveland Cavaliers	0	-6.2	0.094
+41	1641854	f	\N	Craig Porter Jr.	13	1610612739	Cleveland Cavaliers	0	4.6	0.092
+42	1642434	f	\N	Riley Minix	0	1610612739	Cleveland Cavaliers	0	20.8	0.114
+43	1631165	f	\N	Keon Ellis	12	1610612739	Cleveland Cavaliers	0	-4.8	0.058
+44	1642281	f	\N	Jaylon Tyson	21	1610612739	Cleveland Cavaliers	0	3.6	0.092
+45	1642400	f	\N	Tristan Enaruna	0	1610612739	Cleveland Cavaliers	0	21.7	0.105
+46	1626204	f	\N	Larry Nance Jr.	32	1610612739	Cleveland Cavaliers	0	-2.9	0.062
+47	1642878	f	\N	Tyrese Proctor	4	1610612739	Cleveland Cavaliers	0	-0.3	0.087
+48	1628386	f	\N	Jarrett Allen	45	1610612739	Cleveland Cavaliers	0	6.4	0.143
+49	1629731	f	\N	Dean Wade	32	1610612739	Cleveland Cavaliers	0	6.2	0.074
+50	1630846	f	\N	Olivier Sarr	0	1610612739	Cleveland Cavaliers	0	26.5	0.088
+51	1641772	f	\N	Nae'Qwan Tomlin	7	1610612739	Cleveland Cavaliers	0	3.6	0.069
+52	1628378	f	\N	Donovan Mitchell	81	1610612739	Cleveland Cavaliers	2	7.2	0.152
+53	1642490	f	\N	Josh Oduro	0	1610612740	New Orleans Pelicans	0	3.2	0.05
+54	1642847	f	\N	Jeremiah Fears	0	1610612740	New Orleans Pelicans	0	-6.4	0.093
+55	1629627	f	\N	Zion Williamson	0	1610612740	New Orleans Pelicans	0	-1.9	0.141
+56	1630529	f	\N	Herbert Jones	10	1610612740	New Orleans Pelicans	0	-0.9	0.053
+57	1629673	f	\N	Jordan Poole	35	1610612740	New Orleans Pelicans	0	-7.9	0.073
+58	1630621	f	\N	Hunter Dickinson	0	1610612740	New Orleans Pelicans	0	-35.7	0.01
+59	1627749	f	\N	Dejounte Murray	21	1610612740	New Orleans Pelicans	0	1.3	0.138
+60	201599	f	\N	DeAndre Jordan	73	1610612740	New Orleans Pelicans	0	-2.4	0.119
+61	1631121	f	\N	Bryce McGowens	0	1610612740	New Orleans Pelicans	0	-3.6	0.067
+62	1642877	f	\N	Micah Peavy	0	1610612740	New Orleans Pelicans	0	-4.1	0.044
+63	1631255	f	\N	Karlo Matković	0	1610612740	New Orleans Pelicans	0	-4.4	0.108
+64	1642274	f	\N	Yves Missi	0	1610612740	New Orleans Pelicans	0	-1.3	0.087
+65	1642852	f	\N	Derik Queen	0	1610612740	New Orleans Pelicans	0	-6.7	0.109
+66	1641725	f	\N	Trey Alexander	0	1610612740	New Orleans Pelicans	0	-7	0.078
+67	1641722	f	\N	Jordan Hawkins	3	1610612740	New Orleans Pelicans	0	-9.8	0.055
+68	1630530	f	\N	Trey Murphy III	10	1610612740	New Orleans Pelicans	0	-3.6	0.122
+69	1630180	f	\N	Saddiq Bey	6	1610612740	New Orleans Pelicans	0	-3.6	0.112
+70	1626172	f	\N	Kevon Looney	89	1610612740	New Orleans Pelicans	0	-10.4	0.093
+71	1629012	f	\N	Collin Sexton	0	1610612741	Chicago Bulls	0	-3	0.113
+72	1630581	f	\N	Josh Giddey	10	1610612741	Chicago Bulls	0	-5	0.142
+73	1630644	f	\N	Mac McClung	0	1610612741	Chicago Bulls	0	-9.4	0.047
+74	1642265	f	\N	Rob Dillingham	3	1610612741	Chicago Bulls	0	-7.4	0.06
+75	1642530	f	\N	Yuki Kawamura	0	1610612741	Chicago Bulls	0	-2.3	0.082
+76	1631159	f	\N	Leonard Miller	6	1610612741	Chicago Bulls	0	-2.5	0.104
+77	1628380	f	\N	Zach Collins	20	1610612741	Chicago Bulls	0	3.4	0.123
+78	1630208	f	\N	Nick Richards	0	1610612741	Chicago Bulls	0	-8.4	0.079
+79	1641824	f	\N	Matas Buzelis	0	1610612741	Chicago Bulls	0	-6.3	0.097
+80	1631338	f	\N	Mouhamadou Gueye	0	1610612741	Chicago Bulls	0	-17.3	0.073
+81	1629014	f	\N	Anfernee Simons	15	1610612741	Chicago Bulls	0	3	0.096
+82	1642855	f	\N	Noa Essengue	0	1610612741	Chicago Bulls	0	-111.4	-0.095
+83	1630188	f	\N	Jalen Smith	13	1610612741	Chicago Bulls	0	3.4	0.109
+84	1627824	f	\N	Guerschon Yabusele	16	1610612741	Chicago Bulls	0	-7.9	0.077
+85	1630200	f	\N	Tre Jones	0	1610612741	Chicago Bulls	0	-3.8	0.126
+86	1630171	f	\N	Isaac Okoro	26	1610612741	Chicago Bulls	0	-8.5	0.05
+87	1630172	f	\N	Patrick Williams	5	1610612741	Chicago Bulls	0	-11	0.057
+88	1642950	f	\N	Lachlan Olbrich	0	1610612741	Chicago Bulls	0	2.3	0.074
+89	1642967	f	\N	John Poulakidas	0	1610612742	Dallas Mavericks	0	-2.3	0.069
+90	1631108	f	\N	Max Christie	9	1610612742	Dallas Mavericks	0	-6.9	0.079
+91	1641726	f	\N	Dereck Lively II	21	1610612742	Dallas Mavericks	0	6.3	0.094
+92	203939	f	\N	Dwight Powell	44	1610612742	Dallas Mavericks	0	-0.5	0.073
+93	1642358	f	\N	AJ Johnson	0	1610612742	Dallas Mavericks	0	-6.4	0.045
+94	1642948	f	\N	Ryan Nembhard	0	1610612742	Dallas Mavericks	0	-1.9	0.087
+95	1630314	f	\N	Brandon Williams	0	1610612742	Dallas Mavericks	0	-4.4	0.115
+96	202681	f	\N	Kyrie Irving	96	1610612742	Dallas Mavericks	0	0	0
+97	1630230	f	\N	Naji Marshall	10	1610612742	Dallas Mavericks	0	-4.6	0.106
+98	1628997	f	\N	Caleb Martin	45	1610612742	Dallas Mavericks	0	-9.2	0.063
+99	203114	f	\N	Khris Middleton	80	1610612742	Dallas Mavericks	0	-11.1	0.073
+100	1629655	f	\N	Daniel Gafford	27	1610612742	Dallas Mavericks	0	-7.1	0.114
+101	1641890	f	\N	Tyler Smith	0	1610612742	Dallas Mavericks	0	-4.1	0.059
+102	1629023	f	\N	P.J. Washington	22	1610612742	Dallas Mavericks	0	-7.3	0.093
+103	1630619	f	\N	Moussa Cisse	0	1610612742	Dallas Mavericks	0	0.5	0.087
+104	202691	f	\N	Klay Thompson	158	1610612742	Dallas Mavericks	0	-4.7	0.077
+105	1642843	f	\N	Cooper Flagg	0	1610612742	Dallas Mavericks	0	-5.2	0.128
+106	1628963	f	\N	Marvin Bagley III	2	1610612742	Dallas Mavericks	0	-9.1	0.123
+107	1631128	f	\N	Christian Braun	51	1610612743	Denver Nuggets	0	10.1	0.076
+108	1642938	f	\N	Curtis Jones	0	1610612743	Denver Nuggets	0	13.6	0.075
+109	1631124	f	\N	Julian Strawther	14	1610612743	Denver Nuggets	0	1.5	0.082
+110	1626145	f	\N	Tyus Jones	30	1610612743	Denver Nuggets	0	-6.1	0.065
+111	1631212	f	\N	Peyton Watson	29	1610612743	Denver Nuggets	0	6.2	0.087
+112	203501	f	\N	Tim Hardaway Jr.	54	1610612743	Denver Nuggets	0	4.5	0.085
+113	1628971	f	\N	Bruce Brown	46	1610612743	Denver Nuggets	0	-1	0.069
+114	1641747	f	\N	DaRon Holmes II	2	1610612743	Denver Nuggets	0	-3	0.095
+115	203999	f	\N	Nikola Jokić	100	1610612743	Denver Nuggets	2	10.8	0.213
+116	202685	f	\N	Jonas Valančiūnas	62	1610612743	Denver Nuggets	0	-2	0.15
+117	1642461	f	\N	Spencer Jones	6	1610612743	Denver Nuggets	0	1.6	0.045
+118	1630192	f	\N	Zeke Nnaji	23	1610612743	Denver Nuggets	0	-6.6	0.07
+119	1629661	f	\N	Cameron Johnson	44	1610612743	Denver Nuggets	0	9.5	0.075
+120	1629618	f	\N	Jalen Pickett	13	1610612743	Denver Nuggets	0	-0.4	0.084
+121	1642354	f	\N	KJ Simpson	0	1610612743	Denver Nuggets	0	0	0.065
+122	1627750	f	\N	Jamal Murray	85	1610612743	Denver Nuggets	1	6.8	0.142
+123	203932	f	\N	Aaron Gordon	69	1610612743	Denver Nuggets	0	12.7	0.117
+124	1631223	f	\N	David Roddy	8	1610612743	Denver Nuggets	0	3.1	0.128
+125	1627780	f	\N	Gary Payton II	35	1610612744	Golden State Warriors	0	-2.3	0.114
+126	1641764	f	\N	Brandin Podziemski	12	1610612744	Golden State Warriors	0	-0.1	0.114
+127	1642954	f	\N	Will Richard	0	1610612744	Golden State Warriors	0	-3.3	0.063
+128	1630541	f	\N	Moses Moody	37	1610612744	Golden State Warriors	0	2.2	0.083
+129	204001	f	\N	Kristaps Porziņģis	28	1610612744	Golden State Warriors	0	3	0.124
+130	1629001	f	\N	De'Anthony Melton	27	1610612744	Golden State Warriors	0	3.9	0.09
+131	202710	f	\N	Jimmy Butler III	130	1610612744	Golden State Warriors	0	7.3	0.155
+132	1630611	f	\N	Gui Santos	10	1610612744	Golden State Warriors	0	1	0.097
+133	1643018	f	\N	LJ Cryer	0	1610612744	Golden State Warriors	0	-0.4	0.07
+134	1631466	f	\N	Nate Williams	3	1610612744	Golden State Warriors	0	-15.1	0.056
+135	201143	f	\N	Al Horford	197	1610612744	Golden State Warriors	0	-0.9	0.104
+136	1642366	f	\N	Quinten Post	12	1610612744	Golden State Warriors	0	2.3	0.089
+137	203110	f	\N	Draymond Green	169	1610612744	Golden State Warriors	0	-4.3	0.084
+138	1629646	f	\N	Charles Bassey	3	1610612744	Golden State Warriors	0	-13	0.136
+139	201939	f	\N	Stephen Curry	155	1610612744	Golden State Warriors	1	2.8	0.146
+140	203552	f	\N	Seth Curry	41	1610612744	Golden State Warriors	0	-3	0.093
+141	1642502	f	\N	Malevy Leons	0	1610612744	Golden State Warriors	0	-10.6	0.062
+142	1630311	f	\N	Pat Spencer	8	1610612744	Golden State Warriors	0	-3.4	0.087
+143	1628988	f	\N	Aaron Holiday	23	1610612745	Houston Rockets	0	8.3	0.063
+144	1641708	f	\N	Amen Thompson	13	1610612745	Houston Rockets	0	6.6	0.128
+145	1627827	f	\N	Dorian Finney-Smith	44	1610612745	Houston Rockets	0	1.8	0.034
+146	1631120	f	\N	JD Davison	6	1610612745	Houston Rockets	0	2.6	0.09
+147	1627832	f	\N	Fred VanVleet	59	1610612745	Houston Rockets	0	0	0
+148	201142	f	\N	Kevin Durant	171	1610612745	Houston Rockets	1	5.5	0.15
+149	1630256	f	\N	Jae'Sean Tate	5	1610612745	Houston Rockets	0	-3.3	0.067
+150	1631095	f	\N	Jabari Smith Jr.	13	1610612745	Houston Rockets	0	5	0.093
+151	203500	f	\N	Steven Adams	73	1610612745	Houston Rockets	0	11.8	0.1
+152	1641803	f	\N	Tristen Newton	0	1610612745	Houston Rockets	0	8	0.149
+153	1642263	f	\N	Reed Sheppard	9	1610612745	Houston Rockets	0	4.3	0.102
+154	1631106	f	\N	Tari Eason	13	1610612745	Houston Rockets	0	6.5	0.083
+155	1629006	f	\N	Josh Okogie	21	1610612745	Houston Rockets	0	5.6	0.056
+156	1642384	f	\N	Isaiah Crawford	0	1610612745	Houston Rockets	0	-5.9	0.087
+157	1630578	f	\N	Alperen Sengun	13	1610612745	Houston Rockets	0	3.4	0.142
+158	203991	f	\N	Clint Capela	91	1610612745	Houston Rockets	0	8	0.11
+159	201145	f	\N	Jeff Green	108	1610612745	Houston Rockets	0	-8.1	0.061
+160	1641807	f	\N	Norchad Omier	0	1610612746	LA Clippers	0	-54.8	0.16
+161	1642951	f	\N	Sean Pedulla	0	1610612746	LA Clippers	0	-30	0.05
+162	203078	f	\N	Bradley Beal	49	1610612746	LA Clippers	0	-9.3	0.018
+163	202695	f	\N	Kawhi Leonard	146	1610612746	LA Clippers	1	7.5	0.185
+164	1642920	f	\N	Kobe Sanders	0	1610612746	LA Clippers	0	0.2	0.062
+165	1627884	f	\N	Derrick Jones Jr.	51	1610612746	LA Clippers	0	4	0.072
+166	203992	f	\N	Bogdan Bogdanović	35	1610612746	LA Clippers	0	-4.4	0.069
+167	1627739	f	\N	Kris Dunn	12	1610612746	LA Clippers	0	0.5	0.074
+168	1631097	f	\N	Bennedict Mathurin	22	1610612746	LA Clippers	0	-3.9	0.105
+169	1629636	f	\N	Darius Garland	22	1610612746	LA Clippers	0	2.6	0.112
+170	201572	f	\N	Brook Lopez	89	1610612746	LA Clippers	0	1.2	0.076
+171	1642353	f	\N	Cam Christie	3	1610612746	LA Clippers	0	-0.6	0.071
+172	1631102	f	\N	TyTy Washington Jr.	0	1610612746	LA Clippers	0	-18.1	0.082
+173	1642949	f	\N	Yanic Konan Niederhäuser	0	1610612746	LA Clippers	0	4.5	0.098
+174	1628381	f	\N	John Collins	29	1610612746	LA Clippers	0	-1.2	0.098
+175	1641757	f	\N	Jordan Miller	3	1610612746	LA Clippers	0	-0.4	0.106
+176	1630543	f	\N	Isaiah Jackson	15	1610612746	LA Clippers	0	-2.9	0.104
+177	201587	f	\N	Nicolas Batum	76	1610612746	LA Clippers	0	-0.5	0.058
+178	1642876	f	\N	Adou Thiero	6	1610612747	Los Angeles Lakers	0	-13.2	0.054
+179	1629020	f	\N	Jarred Vanderbilt	36	1610612747	Los Angeles Lakers	0	0.2	0.08
+180	1642261	f	\N	Dalton Knecht	7	1610612747	Los Angeles Lakers	0	-8.5	0.069
+181	1629028	f	\N	Deandre Ayton	55	1610612747	Los Angeles Lakers	0	0.1	0.117
+182	1642355	f	\N	Bronny James	10	1610612747	Los Angeles Lakers	0	-8	0.058
+183	1628379	f	\N	Luke Kennard	38	1610612747	Los Angeles Lakers	0	0.5	0.089
+184	1629637	f	\N	Jaxson Hayes	24	1610612747	Los Angeles Lakers	0	2.4	0.109
+185	1631222	f	\N	Jake LaRavia	8	1610612747	Los Angeles Lakers	0	0	0.067
+186	1628467	f	\N	Maxi Kleber	0	1610612747	Los Angeles Lakers	0	3.1	0.038
+187	1630559	f	\N	Austin Reaves	32	1610612747	Los Angeles Lakers	0	5	0.137
+188	1631166	f	\N	Drew Timme	0	1610612747	Los Angeles Lakers	0	-6.9	0.084
+189	1641733	f	\N	Nick Smith Jr.	6	1610612747	Los Angeles Lakers	0	-1.1	0.067
+190	2544	f	\N	LeBron James	302	1610612747	Los Angeles Lakers	1	2.6	0.154
+191	1629060	f	\N	Rui Hachimura	41	1610612747	Los Angeles Lakers	0	2	0.073
+192	1643024	f	\N	Chris Mañon	0	1610612747	Los Angeles Lakers	0	-3.3	0.086
+193	203935	f	\N	Marcus Smart	118	1610612747	Los Angeles Lakers	0	6.8	0.059
+194	1629029	f	\N	Luka Dončić	55	1610612747	Los Angeles Lakers	1	3.8	0.188
+195	1631323	f	\N	Simone Fontecchio	0	1610612748	Miami Heat	0	3.3	0.09
+196	1631211	f	\N	Trevor Keels	0	1610612748	Miami Heat	0	17.7	0.039
+197	1631107	f	\N	Nikola Jović	16	1610612748	Miami Heat	0	-0.8	0.073
+198	1642276	f	\N	Kel'el Ware	4	1610612748	Miami Heat	0	-1	0.137
+199	1641796	f	\N	Pelle Larsson	4	1610612748	Miami Heat	0	2.4	0.084
+200	1631170	f	\N	Jaime Jaquez Jr.	7	1610612748	Miami Heat	0	2.9	0.113
+201	1630696	f	\N	Dru Smith	0	1610612748	Miami Heat	0	-3.2	0.091
+202	1628389	f	\N	Bam Adebayo	78	1610612748	Miami Heat	0	6.1	0.138
+203	1629639	f	\N	Tyler Herro	50	1610612748	Miami Heat	0	-2	0.122
+204	1642066	f	\N	Myron Gardner	0	1610612748	Miami Heat	0	8.4	0.093
+205	1642352	f	\N	Keshad Johnson	2	1610612748	Miami Heat	0	13	0.083
+206	1642443	f	\N	Jahmir Young	0	1610612748	Miami Heat	0	5.6	0.048
+207	203952	f	\N	Andrew Wiggins	44	1610612748	Miami Heat	0	-0.1	0.092
+208	1626181	f	\N	Norman Powell	91	1610612748	Miami Heat	0	0.6	0.113
+209	1642857	f	\N	Kasparas Jakučionis	0	1610612748	Miami Heat	0	3	0.073
+210	1630558	f	\N	Davion Mitchell	11	1610612748	Miami Heat	0	4.2	0.083
+211	1642884	f	\N	Vladislav Goldin	0	1610612748	Miami Heat	0	16.3	0.105
+212	1630579	f	\N	Jericho Sims	10	1610612749	Milwaukee Bucks	0	-10.1	0.083
+213	1626167	f	\N	Myles Turner	66	1610612749	Milwaukee Bucks	0	-6.2	0.086
+214	1629018	f	\N	Gary Trent Jr.	16	1610612749	Milwaukee Bucks	0	-12.4	0.047
+215	1629645	f	\N	Kevin Porter Jr.	5	1610612749	Milwaukee Bucks	0	-4.7	0.132
+216	1626171	f	\N	Bobby Portis	54	1610612749	Milwaukee Bucks	0	-8.2	0.122
+217	203914	f	\N	Gary Harris	39	1610612749	Milwaukee Bucks	0	-9.6	0.048
+218	1627752	f	\N	Taurean Prince	26	1610612749	Milwaukee Bucks	0	-3.8	0.073
+219	1631157	f	\N	Ryan Rollins	3	1610612749	Milwaukee Bucks	0	-3.2	0.111
+220	1628398	f	\N	Kyle Kuzma	32	1610612749	Milwaukee Bucks	0	-6.6	0.096
+221	1631260	f	\N	AJ Green	11	1610612749	Milwaukee Bucks	0	-3.6	0.058
+222	1631172	f	\N	Ousmane Dieng	13	1610612749	Milwaukee Bucks	0	-8.6	0.075
+223	1630828	f	\N	Alex Antetokounmpo	0	1610612749	Milwaukee Bucks	0	12.8	0.196
+224	1642504	f	\N	Cormac Ryan	0	1610612749	Milwaukee Bucks	0	-3.1	0.104
+225	203507	f	\N	Giannis Antetokounmpo	84	1610612749	Milwaukee Bucks	1	4.4	0.213
+226	1631250	f	\N	Pete Nance	0	1610612749	Milwaukee Bucks	0	-5.2	0.078
+227	203648	f	\N	Thanasis Antetokounmpo	25	1610612749	Milwaukee Bucks	0	3.1	0.094
+228	1641748	f	\N	Andre Jackson Jr.	7	1610612749	Milwaukee Bucks	0	-7.5	0.044
+229	1628978	f	\N	Donte DiVincenzo	58	1610612750	Minnesota Timberwolves	0	6.2	0.084
+230	1630545	f	\N	Terrence Shannon Jr.	18	1610612750	Minnesota Timberwolves	0	-8.5	0.069
+231	1630183	f	\N	Jaden McDaniels	49	1610612750	Minnesota Timberwolves	0	3.1	0.088
+232	1641763	f	\N	Julian Phillips	5	1610612750	Minnesota Timberwolves	0	-2.9	0.046
+233	1630162	f	\N	Anthony Edwards	52	1610612750	Minnesota Timberwolves	1	3.5	0.145
+234	204060	f	\N	Joe Ingles	60	1610612750	Minnesota Timberwolves	0	-5.8	0.096
+235	1630538	f	\N	Bones Hyland	23	1610612750	Minnesota Timberwolves	0	5.2	0.101
+236	201144	f	\N	Mike Conley	120	1610612750	Minnesota Timberwolves	0	0.2	0.061
+237	1629675	f	\N	Naz Reid	48	1610612750	Minnesota Timberwolves	0	3.2	0.112
+238	203937	f	\N	Kyle Anderson	76	1610612750	Minnesota Timberwolves	0	-4.2	0.095
+239	1630245	f	\N	Ayo Dosunmu	15	1610612750	Minnesota Timberwolves	0	-1.5	0.114
+240	1642389	f	\N	Zyon Pullin	0	1610612750	Minnesota Timberwolves	0	2.5	0.11
+241	1642866	f	\N	Joan Beringer	5	1610612750	Minnesota Timberwolves	0	2.3	0.107
+242	1641740	f	\N	Jaylen Clark	11	1610612750	Minnesota Timberwolves	0	4.1	0.054
+243	1642402	f	\N	Enrique Freeman	0	1610612750	Minnesota Timberwolves	0	24.2	0.091
+244	203497	f	\N	Rudy Gobert	96	1610612750	Minnesota Timberwolves	0	5	0.121
+245	203944	f	\N	Julius Randle	42	1610612750	Minnesota Timberwolves	0	4	0.128
+246	1642911	f	\N	Rocco Zikarsky	0	1610612750	Minnesota Timberwolves	0	6.2	0.151
+247	1631169	f	\N	Josh Minott	11	1610612751	Brooklyn Nets	0	-0.1	0.104
+248	1630533	f	\N	Ziaire Williams	14	1610612751	Brooklyn Nets	0	-10.1	0.079
+249	1642874	f	\N	Danny Wolf	0	1610612751	Brooklyn Nets	0	-9	0.096
+250	1642962	f	\N	Drake Powell	0	1610612751	Brooklyn Nets	0	-16.1	0.053
+251	1642856	f	\N	Egor Dëmin	0	1610612751	Brooklyn Nets	0	-5.9	0.081
+252	1630604	f	\N	E.J. Liddell	1	1610612751	Brooklyn Nets	0	-6.5	0.087
+253	1630623	f	\N	Tyson Etienne	0	1610612751	Brooklyn Nets	0	-12.2	0.071
+254	1629611	f	\N	Terance Mann	43	1610612751	Brooklyn Nets	0	-8.2	0.066
+255	1629008	f	\N	Michael Porter Jr.	75	1610612751	Brooklyn Nets	0	-6.6	0.141
+256	1641869	f	\N	Malachi Smith	0	1610612751	Brooklyn Nets	0	-13.2	0.102
+257	1630549	f	\N	Day'Ron Sharpe	3	1610612751	Brooklyn Nets	0	-4.3	0.141
+258	1641730	f	\N	Noah Clowney	0	1610612751	Brooklyn Nets	0	-8.7	0.072
+259	1630592	f	\N	Jalen Wilson	0	1610612751	Brooklyn Nets	0	-10.9	0.061
+260	1630534	f	\N	Ochai Agbaji	0	1610612751	Brooklyn Nets	0	-2.7	0.057
+261	1643052	f	\N	Chaney Johnson	0	1610612751	Brooklyn Nets	0	-9	0.099
+262	1629651	f	\N	Nic Claxton	20	1610612751	Brooklyn Nets	0	-12.9	0.117
+263	1642879	f	\N	Ben Saraf	0	1610612751	Brooklyn Nets	0	-12.5	0.06
+264	1642849	f	\N	Nolan Traore	0	1610612751	Brooklyn Nets	0	-10.5	0.056
+265	203903	f	\N	Jordan Clarkson	61	1610612752	New York Knicks	0	3.7	0.068
+266	1641794	f	\N	Dillon Jones	10	1610612752	New York Knicks	0	4.2	0.053
+267	1630540	f	\N	Miles McBride	58	1610612752	New York Knicks	0	9.5	0.085
+268	1628404	f	\N	Josh Hart	61	1610612752	New York Knicks	0	5.5	0.118
+269	1642359	f	\N	Pacôme Dadiet	9	1610612752	New York Knicks	0	-1.7	0.085
+270	1630631	f	\N	Jose Alvarado	28	1610612752	New York Knicks	0	1.3	0.088
+271	1628384	f	\N	OG Anunoby	71	1610612752	New York Knicks	0	9.2	0.099
+272	1641755	f	\N	Kevin McCullar Jr.	0	1610612752	New York Knicks	0	-12.1	0.062
+273	1628973	f	\N	Jalen Brunson	86	1610612752	New York Knicks	2	6.1	0.135
+274	1642278	f	\N	Tyler Kolek	11	1610612752	New York Knicks	0	6	0.101
+275	1631110	f	\N	Jeremy Sochan	8	1610612752	New York Knicks	0	-3.9	0.081
+276	1629011	f	\N	Mitchell Robinson	53	1610612752	New York Knicks	0	7.8	0.124
+277	1628969	f	\N	Mikal Bridges	76	1610612752	New York Knicks	0	6	0.099
+278	1626157	f	\N	Karl-Anthony Towns	69	1610612752	New York Knicks	1	7	0.154
+279	1629013	f	\N	Landry Shamet	83	1610612752	New York Knicks	0	8.1	0.07
+280	1641998	f	\N	Trey Jemison III	0	1610612752	New York Knicks	0	-16.8	0.027
+281	1642885	f	\N	Mohamed Diawara	6	1610612752	New York Knicks	0	5.3	0.076
+282	1630574	f	\N	Ariel Hukporti	13	1610612752	New York Knicks	0	3.1	0.084
+283	1631457	f	\N	Alex Morales	0	1610612753	Orlando Magic	0	16.3	-0.006
+284	1641710	f	\N	Anthony Black	14	1610612753	Orlando Magic	0	0.2	0.09
+285	1628371	f	\N	Jonathan Isaac	17	1610612753	Orlando Magic	0	-1.3	0.078
+286	1628975	f	\N	Jevon Carter	25	1610612753	Orlando Magic	0	-5.7	0.074
+287	1630217	f	\N	Desmond Bane	34	1610612753	Orlando Magic	0	2.2	0.111
+288	1630591	f	\N	Jalen Suggs	14	1610612753	Orlando Magic	0	5.2	0.11
+289	1631094	f	\N	Paolo Banchero	19	1610612753	Orlando Magic	0	-0.2	0.138
+290	1631288	f	\N	Jamal Cain	7	1610612753	Orlando Magic	0	4.5	0.081
+291	1642859	f	\N	Jase Richardson	1	1610612753	Orlando Magic	0	-0.8	0.074
+292	1641724	f	\N	Jett Howard	4	1610612753	Orlando Magic	0	-5.5	0.07
+293	1630658	f	\N	Colin Castleton	0	1610612753	Orlando Magic	0	14	0.098
+294	1629021	f	\N	Moritz Wagner	9	1610612753	Orlando Magic	0	-10	0.106
+295	1630532	f	\N	Franz Wagner	16	1610612753	Orlando Magic	0	3.6	0.134
+296	1641783	f	\N	Tristan da Silva	9	1610612753	Orlando Magic	0	1.6	0.085
+297	1628976	f	\N	Wendell Carter Jr.	19	1610612753	Orlando Magic	0	2.2	0.096
+298	1629048	f	\N	Goga Bitadze	11	1610612753	Orlando Magic	0	1.6	0.122
+299	1642869	f	\N	Noah Penda	1	1610612753	Orlando Magic	0	-3	0.076
+300	1630169	f	\N	Tyrese Haliburton	38	1610612754	Indiana Pacers	1	0	0
+301	1630167	f	\N	Obi Toppin	56	1610612754	Indiana Pacers	0	-3.6	0.143
+302	1629614	f	\N	Andrew Nembhard	40	1610612754	Indiana Pacers	0	-10	0.111
+303	1643007	f	\N	Taelon Peter	0	1610612754	Indiana Pacers	0	-8.7	0.057
+304	1641716	f	\N	Jarace Walker	21	1610612754	Indiana Pacers	0	-11.1	0.09
+305	1642880	f	\N	Kam Jones	0	1610612754	Indiana Pacers	0	-10	0.061
+306	204456	f	\N	T.J. McConnell	62	1610612754	Indiana Pacers	0	-7.6	0.15
+307	1630695	f	\N	Micah Potter	0	1610612754	Indiana Pacers	0	-6.4	0.114
+308	1642277	f	\N	Johnny Furphy	11	1610612754	Indiana Pacers	0	-4.6	0.066
+309	1641771	f	\N	Jalen Slawson	0	1610612754	Indiana Pacers	0	-4.3	0.09
+310	1630174	f	\N	Aaron Nesmith	60	1610612754	Indiana Pacers	0	-7.3	0.067
+311	1641738	f	\N	Kobe Brown	6	1610612754	Indiana Pacers	0	-10.5	0.078
+312	1641767	f	\N	Ben Sheppard	38	1610612754	Indiana Pacers	0	-8.8	0.066
+313	1631245	f	\N	Quenton Jackson	0	1610612754	Indiana Pacers	0	-3.8	0.096
+314	1630643	f	\N	Jay Huff	2	1610612754	Indiana Pacers	0	-6.3	0.092
+315	1627826	f	\N	Ivica Zubac	52	1610612754	Indiana Pacers	0	-2.4	0.13
+316	1627783	f	\N	Pascal Siakam	93	1610612754	Indiana Pacers	0	-5.6	0.13
+317	1630679	f	\N	Ethan Thompson	0	1610612754	Indiana Pacers	0	-0.1	0.051
+318	1630178	f	\N	Tyrese Maxey	52	1610612755	Philadelphia 76ers	1	1.5	0.15
+319	203083	f	\N	Andre Drummond	28	1610612755	Philadelphia 76ers	0	-3.2	0.113
+320	1629656	f	\N	Quentin Grimes	20	1610612755	Philadelphia 76ers	0	-0.1	0.092
+321	200768	f	\N	Kyle Lowry	138	1610612755	Philadelphia 76ers	0	-18	0.013
+322	202331	f	\N	Paul George	125	1610612755	Philadelphia 76ers	0	3.6	0.117
+323	1626162	f	\N	Kelly Oubre Jr.	35	1610612755	Philadelphia 76ers	0	-1.9	0.083
+324	1642348	f	\N	Justin Edwards	9	1610612755	Philadelphia 76ers	0	-3.4	0.068
+325	1630570	f	\N	Trendon Watford	7	1610612755	Philadelphia 76ers	0	-9.1	0.093
+326	1631207	f	\N	Dalen Terry	7	1610612755	Philadelphia 76ers	0	-2.9	0.076
+327	1630699	f	\N	MarJon Beauchamp	6	1610612755	Philadelphia 76ers	0	-4	0.087
+328	203954	f	\N	Joel Embiid	66	1610612755	Philadelphia 76ers	0	5.8	0.163
+329	1641780	f	\N	Johni Broome	2	1610612755	Philadelphia 76ers	0	-13.6	-0.02
+330	1631213	f	\N	Tyrese Martin	0	1610612755	Philadelphia 76ers	0	-10.9	0.077
+331	1631230	f	\N	Dominick Barlow	9	1610612755	Philadelphia 76ers	0	0.8	0.078
+332	1641737	f	\N	Adem Bona	10	1610612755	Philadelphia 76ers	0	0.3	0.069
+333	1631133	f	\N	Jabari Walker	6	1610612755	Philadelphia 76ers	0	0	0.073
+334	1642845	f	\N	VJ Edgecombe	11	1610612755	Philadelphia 76ers	0	0.9	0.092
+335	1626220	f	\N	Royce O'Neale	52	1610612756	Phoenix Suns	0	-3.6	0.082
+336	1642346	f	\N	Ryan Dunn	4	1610612756	Phoenix Suns	0	1.7	0.081
+337	1626164	f	\N	Devin Booker	51	1610612756	Phoenix Suns	0	3.9	0.142
+338	1629599	f	\N	Amir Coffey	24	1610612756	Phoenix Suns	0	-2.2	0.068
+339	1628415	f	\N	Dillon Brooks	33	1610612756	Phoenix Suns	0	-1.1	0.088
+340	1630224	f	\N	Jalen Green	11	1610612756	Phoenix Suns	0	0.7	0.106
+341	1629312	f	\N	Haywood Highsmith	37	1610612756	Phoenix Suns	0	1.7	0.107
+342	1628960	f	\N	Grayson Allen	28	1610612756	Phoenix Suns	0	0.1	0.105
+343	1642863	f	\N	Khaman Maluach	4	1610612756	Phoenix Suns	0	2.5	0.098
+344	1642345	f	\N	Oso Ighodaro	4	1610612756	Phoenix Suns	0	5.1	0.09
+345	1631221	f	\N	Collin Gillespie	4	1610612756	Phoenix Suns	0	3.7	0.108
+346	1642886	f	\N	Koby Brea	0	1610612756	Phoenix Suns	0	-4.2	0.101
+347	1631109	f	\N	Mark Williams	0	1610612756	Phoenix Suns	0	-2	0.141
+348	1631123	f	\N	Jamaree Bouyea	4	1610612756	Phoenix Suns	0	1.4	0.103
+349	1630587	f	\N	Isaiah Livers	0	1610612756	Phoenix Suns	0	1.1	0.05
+350	1642853	f	\N	Rasheer Fleming	4	1610612756	Phoenix Suns	0	6.1	0.056
+351	1643047	f	\N	CJ Huntley	0	1610612756	Phoenix Suns	0	17.6	0.061
+352	1630692	f	\N	Jordan Goodwin	5	1610612756	Phoenix Suns	0	3.3	0.098
+353	1643257	f	\N	Jayson Kent	0	1610612757	Portland Trail Blazers	0	-2.7	0.245
+354	1630703	f	\N	Scoot Henderson	5	1610612757	Portland Trail Blazers	0	3.2	0.086
+355	203081	f	\N	Damian Lillard	68	1610612757	Portland Trail Blazers	0	0	0
+356	1631104	f	\N	Blake Wesley	4	1610612757	Portland Trail Blazers	0	-8.6	0.075
+357	1631126	f	\N	Caleb Love	0	1610612757	Portland Trail Blazers	0	-6.3	0.079
+358	1642959	f	\N	Chris Youngblood	0	1610612757	Portland Trail Blazers	0	2.3	0.059
+359	1629680	f	\N	Matisse Thybulle	29	1610612757	Portland Trail Blazers	0	9	0.093
+360	201950	f	\N	Jrue Holiday	102	1610612757	Portland Trail Blazers	0	6.1	0.124
+361	1630166	f	\N	Deni Avdija	5	1610612757	Portland Trail Blazers	0	0.3	0.149
+362	203924	f	\N	Jerami Grant	40	1610612757	Portland Trail Blazers	0	-0.3	0.094
+363	1642905	f	\N	Yang Hansen	4	1610612757	Portland Trail Blazers	0	-15.1	0.027
+364	1631101	f	\N	Shaedon Sharpe	5	1610612757	Portland Trail Blazers	0	-1.3	0.108
+365	1642270	f	\N	Donovan Clingan	5	1610612757	Portland Trail Blazers	0	0.1	0.139
+366	1631200	f	\N	Kris Murray	5	1610612757	Portland Trail Blazers	0	1.5	0.063
+367	1630249	f	\N	Vít Krejčí	4	1610612757	Portland Trail Blazers	0	-1.1	0.068
+368	1641739	f	\N	Toumani Camara	5	1610612757	Portland Trail Blazers	0	1.3	0.073
+369	1629057	f	\N	Robert Williams III	61	1610612757	Portland Trail Blazers	0	3.4	0.163
+370	1631321	f	\N	Sidy Cissoko	4	1610612757	Portland Trail Blazers	0	-1.7	0.036
+371	1628370	f	\N	Malik Monk	7	1610612758	Sacramento Kings	0	-8.3	0.094
+372	1642363	f	\N	Nique Clifford	0	1610612758	Sacramento Kings	0	-4.5	0.062
+373	1630165	f	\N	Killian Hayes	0	1610612758	Sacramento Kings	0	-2.8	0.071
+374	203926	f	\N	Doug McDermott	25	1610612758	Sacramento Kings	0	-11.1	0.055
+375	203897	f	\N	Zach LaVine	4	1610612758	Sacramento Kings	0	-12.6	0.096
+376	1630173	f	\N	Precious Achiuwa	26	1610612758	Sacramento Kings	0	-7.2	0.102
+377	201942	f	\N	DeMar DeRozan	63	1610612758	Sacramento Kings	0	-11.7	0.111
+378	1627734	f	\N	Domantas Sabonis	20	1610612758	Sacramento Kings	0	-13.9	0.131
+379	1631099	f	\N	Keegan Murray	7	1610612758	Sacramento Kings	0	-10.7	0.078
+380	1629631	f	\N	De'Andre Hunter	24	1610612758	Sacramento Kings	0	-0.9	0.077
+381	201566	f	\N	Russell Westbrook	135	1610612758	Sacramento Kings	0	-12.1	0.105
+382	1629234	f	\N	Drew Eubanks	6	1610612758	Sacramento Kings	0	-11.4	0.082
+383	1642269	f	\N	Devin Carter	0	1610612758	Sacramento Kings	0	-7.3	0.094
+384	1631116	f	\N	Patrick Baldwin Jr.	3	1610612758	Sacramento Kings	0	-17.2	0.052
+385	1641815	f	\N	Isaiah Stevens	0	1610612758	Sacramento Kings	0	-13	0.093
+386	1631342	f	\N	Daeqwon Plowden	0	1610612758	Sacramento Kings	0	-10.9	0.057
+387	1642928	f	\N	Dylan Cardwell	0	1610612758	Sacramento Kings	0	-2.5	0.089
+388	1642875	f	\N	Maxime Raynaud	0	1610612758	Sacramento Kings	0	-10.9	0.109
+389	1629162	f	\N	Jordan McLaughlin	23	1610612759	San Antonio Spurs	0	-11.5	0.091
+390	1641705	f	\N	Victor Wembanyama	22	1610612759	San Antonio Spurs	1	17	0.209
+391	1642844	f	\N	Dylan Harper	23	1610612759	San Antonio Spurs	0	9.5	0.113
+392	1629640	f	\N	Keldon Johnson	23	1610612759	San Antonio Spurs	0	7.8	0.118
+393	1628368	f	\N	De'Aaron Fox	28	1610612759	San Antonio Spurs	0	9.9	0.117
+394	1642264	f	\N	Stephon Castle	23	1610612759	San Antonio Spurs	0	9.8	0.117
+395	1628436	f	\N	Luke Kornet	66	1610612759	San Antonio Spurs	0	3.9	0.109
+396	203482	f	\N	Kelly Olynyk	57	1610612759	San Antonio Spurs	0	-6.9	0.096
+397	1642868	f	\N	Carter Bryant	22	1610612759	San Antonio Spurs	0	0.8	0.071
+398	1641801	f	\N	Emanuel Miller	0	1610612759	San Antonio Spurs	0	-28	0.093
+399	202687	f	\N	Bismack Biyombo	49	1610612759	San Antonio Spurs	0	-32.9	0.024
+400	1630170	f	\N	Devin Vassell	23	1610612759	San Antonio Spurs	0	11.4	0.087
+401	1642357	f	\N	David Jones Garcia	0	1610612759	San Antonio Spurs	0	23.1	0.133
+402	1630577	f	\N	Julian Champagnie	23	1610612759	San Antonio Spurs	0	12.4	0.091
+403	203084	f	\N	Harrison Barnes	91	1610612759	San Antonio Spurs	0	7.8	0.075
+404	1630322	f	\N	Lindy Waters III	12	1610612759	San Antonio Spurs	0	-1.6	0.052
+405	203486	f	\N	Mason Plumlee	77	1610612759	San Antonio Spurs	0	-2.2	0.084
+406	1631127	f	\N	Harrison Ingram	0	1610612759	San Antonio Spurs	0	-12.6	0.086
+407	1628983	f	\N	Shai Gilgeous-Alexander	61	1610612760	Oklahoma City Thunder	2	16.3	0.207
+408	1642272	f	\N	Jared McCain	15	1610612760	Oklahoma City Thunder	0	4.6	0.079
+409	1629652	f	\N	Luguentz Dort	54	1610612760	Oklahoma City Thunder	0	8	0.049
+410	1631119	f	\N	Jaylin Williams	42	1610612760	Oklahoma City Thunder	0	11.5	0.115
+411	1631096	f	\N	Chet Holmgren	48	1610612760	Oklahoma City Thunder	1	16.1	0.154
+412	1631114	f	\N	Jalen Williams	38	1610612760	Oklahoma City Thunder	1	11.7	0.135
+413	1627936	f	\N	Alex Caruso	69	1610612760	Oklahoma City Thunder	0	17.6	0.093
+414	1630198	f	\N	Isaiah Joe	55	1610612760	Oklahoma City Thunder	0	11.7	0.099
+415	1642850	f	\N	Thomas Sorber	0	1610612760	Oklahoma City Thunder	0	0	0
+416	1642362	f	\N	Payton Sandfort	0	1610612760	Oklahoma City Thunder	0	-14	0.066
+417	1642382	f	\N	Branden Carlson	0	1610612760	Oklahoma City Thunder	0	-2	0.109
+418	1630598	f	\N	Aaron Wiggins	45	1610612760	Oklahoma City Thunder	0	6.2	0.082
+419	1641717	f	\N	Cason Wallace	48	1610612760	Oklahoma City Thunder	0	12.4	0.076
+420	1642964	f	\N	Brooks Barnhizer	0	1610612760	Oklahoma City Thunder	0	-14.5	0.062
+421	1642349	f	\N	Ajay Mitchell	23	1610612760	Oklahoma City Thunder	0	15.6	0.116
+422	1629026	f	\N	Kenrich Williams	34	1610612760	Oklahoma City Thunder	0	3.1	0.098
+423	1642260	f	\N	Nikola Topić	9	1610612760	Oklahoma City Thunder	0	-13.7	0.063
+424	1628392	f	\N	Isaiah Hartenstein	64	1610612760	Oklahoma City Thunder	0	15.6	0.143
+425	1630639	f	\N	A.J. Lawson	17	1610612761	Toronto Raptors	0	-3.1	0.091
+426	1641711	f	\N	Gradey Dick	3	1610612761	Toronto Raptors	0	4.1	0.07
+427	1642367	f	\N	Jonathan Mogbo	3	1610612761	Toronto Raptors	0	-10.2	0.101
+428	1627742	f	\N	Brandon Ingram	15	1610612761	Toronto Raptors	0	1	0.121
+429	1630567	f	\N	Scottie Barnes	11	1610612761	Toronto Raptors	0	4.6	0.139
+430	1630193	f	\N	Immanuel Quickley	13	1610612761	Toronto Raptors	0	2.9	0.118
+431	1629628	f	\N	RJ Barrett	23	1610612761	Toronto Raptors	0	4.9	0.112
+432	1642867	f	\N	Collin Murray-Boyles	7	1610612761	Toronto Raptors	0	2.6	0.098
+433	1642266	f	\N	Ja'Kobe Walter	7	1610612761	Toronto Raptors	0	0.9	0.069
+434	202066	f	\N	Garrett Temple	33	1610612761	Toronto Raptors	0	-1.8	0.051
+435	1627751	f	\N	Jakob Poeltl	29	1610612761	Toronto Raptors	0	2	0.115
+436	1642347	f	\N	Jamal Shead	7	1610612761	Toronto Raptors	0	5.8	0.078
+437	1642935	f	\N	Chucky Hepburn	0	1610612761	Toronto Raptors	0	-47.6	-0.1
+438	1631218	f	\N	Trayce Jackson-Davis	12	1610612761	Toronto Raptors	0	-7.6	0.1
+439	1630572	f	\N	Sandro Mamukelashvili	7	1610612761	Toronto Raptors	0	5.3	0.123
+440	1642918	f	\N	Alijah Martin	0	1610612761	Toronto Raptors	0	-5.8	0.062
+441	1642419	f	\N	Jamison Battle	6	1610612761	Toronto Raptors	0	6.7	0.079
+442	1643060	f	\N	Hayden Gray	0	1610612762	Utah Jazz	0	-29	0.05
+443	1642396	f	\N	Blake Hinson	0	1610612762	Utah Jazz	0	6.7	0.101
+444	1641718	f	\N	Keyonte George	0	1610612762	Utah Jazz	0	-8.6	0.122
+445	1642262	f	\N	Cody Williams	0	1610612762	Utah Jazz	0	-10.6	0.057
+446	1642268	f	\N	Isaiah Collier	0	1610612762	Utah Jazz	0	-13.2	0.102
+447	1629004	f	\N	Svi Mykhailiuk	11	1610612762	Utah Jazz	0	-3	0.074
+448	1641989	f	\N	Elijah Harkless	0	1610612762	Utah Jazz	0	-2.5	0.055
+449	1642846	f	\N	Ace Bailey	0	1610612762	Utah Jazz	0	-10.7	0.069
+450	1628991	f	\N	Jaren Jackson Jr.	27	1610612762	Utah Jazz	0	-2	0.107
+451	1643016	f	\N	Bez Mbeng	0	1610612762	Utah Jazz	0	-13.2	0.06
+452	1642271	f	\N	Kyle Filipowski	0	1610612762	Utah Jazz	0	-6.6	0.106
+453	1628374	f	\N	Lauri Markkanen	0	1610612762	Utah Jazz	0	-1.5	0.139
+454	1631117	f	\N	Walker Kessler	0	1610612762	Utah Jazz	0	4.8	0.138
+455	1641729	f	\N	Brice Sensabaugh	0	1610612762	Utah Jazz	0	-9.4	0.09
+456	203994	f	\N	Jusuf Nurkić	20	1610612762	Utah Jazz	0	-7.9	0.121
+457	1631131	f	\N	Oscar Tshiebwe	0	1610612762	Utah Jazz	0	-8	0.125
+458	201567	f	\N	Kevin Love	88	1610612762	Utah Jazz	0	-6.7	0.103
+459	1629723	f	\N	John Konchar	18	1610612762	Utah Jazz	0	-5.9	0.09
+460	1642942	f	\N	Jahmai Mashack	0	1610612763	Memphis Grizzlies	0	-14.5	0.041
+461	1642377	f	\N	Jaylen Wells	0	1610612763	Memphis Grizzlies	0	-4.4	0.069
+462	1630590	f	\N	Scotty Pippen Jr.	4	1610612763	Memphis Grizzlies	0	-11.5	0.086
+463	1629660	f	\N	Ty Jerome	9	1610612763	Memphis Grizzlies	0	-5	0.162
+464	203484	f	\N	Kentavious Caldwell-Pope	67	1610612763	Memphis Grizzlies	0	-4.5	0.083
+465	1642383	f	\N	Walter Clayton Jr.	0	1610612763	Memphis Grizzlies	0	-9.6	0.073
+466	1630583	f	\N	Santi Aldama	10	1610612763	Memphis Grizzlies	0	-2.4	0.115
+467	1642914	f	\N	Javon Small	0	1610612763	Memphis Grizzlies	0	-5.7	0.109
+468	1629630	f	\N	Ja Morant	22	1610612763	Memphis Grizzlies	0	-4.4	0.128
+469	1641744	f	\N	Zach Edey	4	1610612763	Memphis Grizzlies	0	18.3	0.157
+470	1629634	f	\N	Brandon Clarke	14	1610612763	Memphis Grizzlies	0	-22.2	0.023
+471	1641765	f	\N	Olivier-Maxence Prosper	3	1610612763	Memphis Grizzlies	0	-9.7	0.103
+472	1641712	f	\N	Rayan Rupert	0	1610612763	Memphis Grizzlies	0	-13.6	0.055
+473	1641707	f	\N	Taylor Hendricks	0	1610612763	Memphis Grizzlies	0	-10.7	0.077
+474	1642907	f	\N	Cedric Coward	0	1610612763	Memphis Grizzlies	0	0.3	0.11
+475	1642285	f	\N	Cam Spencer	0	1610612763	Memphis Grizzlies	0	-3.6	0.12
+476	1641713	f	\N	GG Jackson	0	1610612763	Memphis Grizzlies	0	-3.5	0.108
+477	201959	f	\N	Taj Gibson	71	1610612763	Memphis Grizzlies	0	-4.7	0.081
+478	1642882	f	\N	Julian Reese	0	1610612764	Washington Wizards	0	-11.8	0.092
+479	1641731	f	\N	Bilal Coulibaly	0	1610612764	Washington Wizards	0	-12.8	0.082
+480	1641774	f	\N	Tristan Vukcevic	0	1610612764	Washington Wizards	0	-15.1	0.11
+481	1641715	f	\N	Cam Whitmore	3	1610612764	Washington Wizards	0	-19.6	0.082
+482	1629027	f	\N	Trae Young	27	1610612764	Washington Wizards	0	-8.1	0.128
+483	1626156	f	\N	D'Angelo Russell	32	1610612764	Washington Wizards	0	-3.4	0.098
+484	1642364	f	\N	Jamir Watkins	0	1610612764	Washington Wizards	0	-6.4	0.069
+485	1642267	f	\N	Bub Carrington	0	1610612764	Washington Wizards	0	-15.3	0.072
+486	1630702	f	\N	Jaden Hardy	19	1610612764	Washington Wizards	0	-4.4	0.066
+487	1630551	f	\N	Justin Champagnie	4	1610612764	Washington Wizards	0	-9.4	0.106
+488	1642848	f	\N	Tre Johnson	0	1610612764	Washington Wizards	0	-11.2	0.068
+489	1641778	f	\N	Leaky Black	0	1610612764	Washington Wizards	0	-9.9	0.051
+490	1630536	f	\N	Sharife Cooper	0	1610612764	Washington Wizards	0	-11.7	0.094
+491	1630264	f	\N	Anthony Gill	4	1610612764	Washington Wizards	0	-14.4	0.08
+492	1642273	f	\N	Kyshawn George	0	1610612764	Washington Wizards	0	-11.5	0.09
+493	1642259	f	\N	Alex Sarr	0	1610612764	Washington Wizards	0	-12.4	0.121
+494	203076	f	\N	Anthony Davis	60	1610612764	Washington Wizards	0	-4.6	0.151
+495	1642860	f	\N	Will Riley	0	1610612764	Washington Wizards	0	-14.1	0.08
+496	1631105	f	\N	Jalen Duren	20	1610612765	Detroit Pistons	1	11.8	0.177
+497	1630595	f	\N	Cade Cunningham	20	1610612765	Detroit Pistons	2	11.4	0.159
+498	1642403	f	\N	Isaac Jones	0	1610612765	Detroit Pistons	0	-37.9	0.036
+499	1641842	f	\N	Ronald Holland II	14	1610612765	Detroit Pistons	0	5.7	0.085
+500	1630194	f	\N	Paul Reed	46	1610612765	Detroit Pistons	0	8.1	0.153
+501	1627747	f	\N	Caris LeVert	38	1610612765	Detroit Pistons	0	0.8	0.081
+502	1641709	f	\N	Ausar Thompson	20	1610612765	Detroit Pistons	0	11.6	0.101
+503	202699	f	\N	Tobias Harris	81	1610612765	Detroit Pistons	0	10	0.112
+504	1631111	f	\N	Wendell Moore Jr.	7	1610612765	Detroit Pistons	0	34.6	0.063
+505	1642404	f	\N	Chaz Lanier	3	1610612765	Detroit Pistons	0	2	0.045
+506	1642450	f	\N	Daniss Jenkins	14	1610612765	Detroit Pistons	0	6.6	0.1
+507	1631204	f	\N	Marcus Sasser	6	1610612765	Detroit Pistons	0	13.4	0.078
+508	1628989	f	\N	Kevin Huerter	35	1610612765	Detroit Pistons	0	2.3	0.093
+509	1630191	f	\N	Isaiah Stewart	15	1610612765	Detroit Pistons	0	1.8	0.095
+510	1629750	f	\N	Javonte Green	23	1610612765	Detroit Pistons	0	7.6	0.095
+511	1642449	f	\N	Tolu Smith	3	1610612765	Detroit Pistons	0	2.3	0.117
+512	1629130	f	\N	Duncan Robinson	83	1610612765	Detroit Pistons	0	11.3	0.078
+513	1628970	f	\N	Miles Bridges	0	1610612766	Charlotte Hornets	0	3.5	0.114
+514	1630163	f	\N	LaMelo Ball	0	1610612766	Charlotte Hornets	0	9.1	0.134
+515	1629684	f	\N	Grant Williams	61	1610612766	Charlotte Hornets	0	12.9	0.089
+516	1629632	f	\N	Coby White	5	1610612766	Charlotte Hornets	0	3.2	0.112
+517	1642883	f	\N	Sion James	0	1610612766	Charlotte Hornets	0	3.3	0.062
+518	1642851	f	\N	Kon Knueppel	0	1610612766	Charlotte Hornets	0	6.2	0.115
+519	1630182	f	\N	Josh Green	39	1610612766	Charlotte Hornets	0	12.5	0.059
+520	1641750	f	\N	Ryan Kalkbrenner	0	1610612766	Charlotte Hornets	0	1.1	0.108
+521	1641810	f	\N	Antonio Reeves	0	1610612766	Charlotte Hornets	0	19.7	0.099
+522	1631217	f	\N	Moussa Diabaté	0	1610612766	Charlotte Hornets	0	10.5	0.108
+523	1641790	f	\N	PJ Hall	0	1610612766	Charlotte Hornets	0	-5.4	0.098
+524	1641787	f	\N	Tosan Evbuomwan	0	1610612766	Charlotte Hornets	0	-50	-0.043
+525	1626192	f	\N	Pat Connaughton	86	1610612766	Charlotte Hornets	0	-4.3	0.117
+526	1630544	f	\N	Tre Mann	0	1610612766	Charlotte Hornets	0	-10.1	0.062
+527	1641706	f	\N	Brandon Miller	0	1610612766	Charlotte Hornets	0	8.5	0.113
+528	1630214	f	\N	Xavier Tillman	27	1610612766	Charlotte Hornets	0	-4.9	0.069
+529	1642275	f	\N	Tidjane Salaün	0	1610612766	Charlotte Hornets	0	2.1	0.102
+530	1642862	f	\N	Liam McNeeley	0	1610612766	Charlotte Hornets	0	1.6	0.079
 \.
 
 
@@ -723,5 +726,5 @@ ALTER TABLE ONLY public.player
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 3WgLvRNYG9a0J2vbX2DCeWDAcqeZ9r23Albieda6YmecdgPKGvz7ufMLVCGnq7e
+\unrestrict AX7Z3JKEId5awPJdlMMt2b2iiO5Lwt09Vjw2OR8Y86XDwgO2dVlSK12c9WfAi3w
 

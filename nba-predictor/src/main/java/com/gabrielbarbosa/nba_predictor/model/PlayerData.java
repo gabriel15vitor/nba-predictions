@@ -20,4 +20,8 @@ public class PlayerData {
     private int allNbaCount;
     @JsonProperty("PLAYOFF_GAMES")
     private int playoffGames;
+    @JsonProperty("PIE")
+    private double pie;
+    @JsonProperty("NET_RATING")
+    private double netRating;
 }

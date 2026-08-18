@@ -49,30 +49,60 @@ public class PredictionService {
     }
 
     /**
-     * Blends team-level advanced stats with active-roster strength (average
-     * All-NBA selections and playoff games across non-injured players).
-     * Injured players are excluded entirely, so a flagged star lowers their
-     * team's score here just like in the champion ranking.
+     * Estimates what fraction of a team's total production remains once
+     * injured players are excluded, using PIE (Player Impact Estimate).
+     *
+     * PIE is scaled so both teams in a single game sum to 100% — meaning one
+     * team's players' PIE values sum to roughly 50% of that game's total
+     * production. Comparing the SUM of PIE across the active (non-injured)
+     * roster to the sum across the FULL roster gives a real, data-driven
+     * estimate of "what share of this team's output is still on the floor."
+     *
+     * This is a genuine attempt at "team stats without the injured players,"
+     * as opposed to a proxy metric like award counts — it directly reflects
+     * measured on-court production share, at the cost of depending on
+     * current-season PIE data being fresh and complete for every player.
+     */
+    private double calculatePieAdjustmentFactor(Long teamId) {
+        List<Player> fullRoster = playerRepository.findByTeamId(teamId);
+
+        if (fullRoster.isEmpty()) {
+            return 1.0; // no player data yet — don't penalize the team for missing data
+        }
+
+        double fullRosterPieSum = fullRoster.stream().mapToDouble(Player::getPie).sum();
+
+        if (fullRosterPieSum <= 0) {
+            return 1.0; // guard against divide-by-zero / missing PIE data
+        }
+
+        double activeRosterPieSum = fullRoster.stream()
+                .filter(p -> !p.isInjured())
+                .mapToDouble(Player::getPie)
+                .sum();
+
+        return activeRosterPieSum / fullRosterPieSum;
+    }
+
+    /**
+     * Blends team-level advanced stats (scaled down by the PIE-based injury
+     * impact) with active-roster star power (All-NBA selections, playoff
+     * experience — summed, not averaged, so losing a single star isn't
+     * diluted by the rest of the roster).
      */
     private double calculateMatchupScore(TeamStats stats) {
         double teamScore = (stats.getNetRating() * 0.4) + (stats.getWinPct() * 0.3) + (stats.getEfgPct() * 0.3);
 
+        double pieAdjustment = calculatePieAdjustmentFactor(stats.getTeamId());
+        double adjustedTeamScore = teamScore * pieAdjustment;
+
         List<Player> activeRoster = playerRepository.findByTeamIdAndIsInjuredFalse(stats.getTeamId());
+        double allNbaTotal = activeRoster.stream().mapToInt(Player::getAllNbaCount).sum();
+        double playoffGamesTotal = activeRoster.stream().mapToInt(Player::getPlayoffGames).sum();
 
-        double avgAllNba = 0;
-        double avgPlayoffGames = 0;
+        double rosterScore = ((allNbaTotal / 3) * 0.6) + ((playoffGamesTotal / 300) * 0.4);
 
-        if (!activeRoster.isEmpty()) {
-            avgAllNba = activeRoster.stream().mapToInt(Player::getAllNbaCount).average().orElse(0);
-            avgPlayoffGames = activeRoster.stream().mapToInt(Player::getPlayoffGames).average().orElse(0);
-        }
-
-        double rosterScore = (avgAllNba * 0.6) + ((avgPlayoffGames / 50) * 0.4);
-
-        // Team performance stats remain the dominant signal (80%); roster
-        // strength is a smaller adjustment (20%) on top, mainly meant to
-        // reflect the impact of injuries rather than override season form.
-        return (teamScore * 0.8) + (rosterScore * 0.2);
+        return (adjustedTeamScore * 0.7) + (rosterScore * 0.3);
     }
 
     public List<ChampionScore> predictChampionRanking() {
@@ -86,25 +116,20 @@ public class PredictionService {
 
         List<ChampionScore> ranking = new ArrayList<>();
         for (TeamStats team : allTeams) {
+            double teamScore = (team.getNetRating() * 0.3) + (team.getWinPct() * 0.15) + (team.getEfgPct() * 0.1);
+
+            double pieAdjustment = calculatePieAdjustmentFactor(team.getTeamId());
+            double adjustedTeamScore = teamScore * pieAdjustment;
+
             List<Player> activeRoster = playerRepository.findByTeamIdAndIsInjuredFalse(team.getTeamId());
+            double allNbaTotal = activeRoster.stream().mapToInt(Player::getAllNbaCount).sum();
+            double playoffGamesTotal = activeRoster.stream().mapToInt(Player::getPlayoffGames).sum();
 
-            double avgAllNba = 0;
-            double avgPlayoffGames = 0;
-
-            if (!activeRoster.isEmpty()) {
-                avgAllNba = activeRoster.stream().mapToInt(Player::getAllNbaCount).average().orElse(0);
-                avgPlayoffGames = activeRoster.stream().mapToInt(Player::getPlayoffGames).average().orElse(0);
-            }
-
-            double score = (team.getNetRating() * 0.35)
-                    + (team.getWinPct() * 0.2)
-                    + (team.getEfgPct() * 0.15)
-                    + (avgAllNba * 0.2)
-                    + ((avgPlayoffGames / 50) * 0.1);
+            double score = adjustedTeamScore + ((allNbaTotal / 3) * 0.3) + ((playoffGamesTotal / 300) * 0.15);
 
             ranking.add(new ChampionScore(
                     team.getTeamName(), score, team.getWinPct(), team.getNetRating(),
-                    team.getEfgPct(), avgAllNba, avgPlayoffGames
+                    team.getEfgPct(), allNbaTotal, playoffGamesTotal
             ));
         }
 

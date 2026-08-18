@@ -37,4 +37,10 @@ public class Player {
 
     @Column(name = "is_injured")
     private boolean isInjured = false;
+
+    @Column(name = "pie")
+    private double pie;
+
+    @Column(name = "player_net_rating")
+    private double netRating;
 }
