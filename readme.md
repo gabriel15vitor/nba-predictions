@@ -34,6 +34,8 @@ Repository  → database access via Spring Data JPA
 Model       → entities mapped to PostgreSQL tables
 ```
 
+![Architecture diagram](docs/architecture.png)
+
 Two Python scripts using the official `nba_api` library feed the database:
 - `fetch_team_stats.py` — pulls advanced per-season team statistics for the last 3 seasons (calculated automatically from today's date) and posts them in batch
 - `fetch_players.py` — pulls current rosters, recent All-NBA selection counts (last 2 seasons), and career playoff games for every active player, upserts them (correctly handling trades), and prunes players who've left the league
